@@ -1,0 +1,4 @@
+push_swap
+*.o
+ft_print/*.o
+ft_print/*.a
