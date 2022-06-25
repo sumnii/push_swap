@@ -1,4 +1,7 @@
 push_swap
 *.o
-ft_print/*.o
-ft_print/*.a
+./Libft/*.o
+./Libft/libft.a
+./ft_print/*.o
+./ft_print/libftprintf.a
+*/README.md

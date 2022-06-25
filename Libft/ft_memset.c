@@ -1,22 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/25 23:30:27 by sumsong           #+#    #+#             */
-/*   Updated: 2022/06/26 00:23:20 by sumsong          ###   ########.fr       */
+/*   Created: 2021/12/09 13:51:34 by sumsong           #+#    #+#             */
+/*   Updated: 2022/01/05 15:28:06 by sumsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "libft.h"
 
-# include "Libft/libft.h"
-# include "ft_printf/ft_printf.h"
+void	*ft_memset(void *b, int value, size_t num)
+{
+	unsigned char	*ptr;
 
-int	*make_stack_a(int argc, char **argv);
-int	dup_check(int *stack, int idx);
-
-#endif
+	ptr = b;
+	while (num > 0)
+	{
+		*ptr++ = (unsigned char)value;
+		--num;
+	}
+	return (b);
+}

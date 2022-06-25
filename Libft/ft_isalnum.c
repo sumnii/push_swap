@@ -1,22 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/25 23:30:27 by sumsong           #+#    #+#             */
-/*   Updated: 2022/06/26 00:23:20 by sumsong          ###   ########.fr       */
+/*   Created: 2021/12/08 15:39:54 by sumsong           #+#    #+#             */
+/*   Updated: 2022/01/12 11:31:37 by sumsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "libft.h"
 
-# include "Libft/libft.h"
-# include "ft_printf/ft_printf.h"
-
-int	*make_stack_a(int argc, char **argv);
-int	dup_check(int *stack, int idx);
-
-#endif
+int	ft_isalnum(int c)
+{
+	if ('A' <= c && c <= 'Z')
+		return (1);
+	else if ('a' <= c && c <= 'z')
+		return (2);
+	else if ('0' <= c && c <= '9')
+		return (4);
+	else
+		return (0);
+}

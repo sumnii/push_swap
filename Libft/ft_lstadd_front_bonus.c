@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_lstadd_front_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/25 23:30:27 by sumsong           #+#    #+#             */
-/*   Updated: 2022/06/26 00:23:20 by sumsong          ###   ########.fr       */
+/*   Created: 2022/01/17 19:02:04 by sumsong           #+#    #+#             */
+/*   Updated: 2022/01/25 00:40:53 by sumsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "libft.h"
 
-# include "Libft/libft.h"
-# include "ft_printf/ft_printf.h"
-
-int	*make_stack_a(int argc, char **argv);
-int	dup_check(int *stack, int idx);
-
-#endif
+void	ft_lstadd_front(t_list **lst, t_list *new)
+{
+	if (new == NULL)
+		return ;
+	new->next = *lst;
+	*lst = new;
+}

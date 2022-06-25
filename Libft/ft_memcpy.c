@@ -1,22 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/25 23:30:27 by sumsong           #+#    #+#             */
-/*   Updated: 2022/06/26 00:23:20 by sumsong          ###   ########.fr       */
+/*   Created: 2022/01/05 15:30:11 by sumsong           #+#    #+#             */
+/*   Updated: 2022/01/24 23:28:20 by sumsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "libft.h"
 
-# include "Libft/libft.h"
-# include "ft_printf/ft_printf.h"
+void	*ft_memcpy(void *dst, const void *src, size_t n)
+{
+	unsigned char	*dst_ptr;
+	unsigned char	*src_ptr;
 
-int	*make_stack_a(int argc, char **argv);
-int	dup_check(int *stack, int idx);
-
-#endif
+	if (!dst && !src)
+		return (NULL);
+	dst_ptr = dst;
+	src_ptr = (unsigned char *)src;
+	while (n > 0)
+	{
+		*dst_ptr++ = *src_ptr++;
+		--n;
+	}
+	return (dst);
+}

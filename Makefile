@@ -6,7 +6,7 @@
 #    By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/25 23:33:09 by sumsong           #+#    #+#              #
-#    Updated: 2022/06/25 23:40:17 by sumsong          ###   ########.fr        #
+#    Updated: 2022/06/25 23:54:07 by sumsong          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,8 +19,10 @@ AR				=	ar rcs
 RM				=	rm -f
 
 SRC_DIR			=	./
+LIBFT_DIR		=	./Libft/
 PRINTF_DIR		=	./ft_printf/
 
+LIBFT_FLAGS		=	-L$(LIBFT_DIR) -lft
 PRINTF_FLAGS	=	-L$(PRINTF_DIR) -lftprintf
 
 SRC				=	main.c
@@ -37,10 +39,12 @@ all: $(NAME)
 
 clean:
 	make -C $(PRINTF_DIR) clean
+	make -C $(LIBFT_DIR) clean
 	$(RM) $(OBJS)
 
 fclean: clean
 	make -C $(PRINTF_DIR) fclean
+	make -C $(LIBFT_DIR) fclean
 	$(RM) $(NAME)
 
 re: clean all
@@ -52,7 +56,8 @@ re: clean all
 
 $(NAME): $(OBJS)
 	make -C $(PRINTF_DIR)
-	$(CC) -o $@ $(PRINTF_FLAGS) $(OBJS)
+	make -C $(LIBFT_DIR)
+	$(CC) -o $@ $(LIBFT_FLAGS) $(PRINTF_FLAGS) $(OBJS)
 
 # $(NAME_BONUS): $(BONUS_OBJS)
 # 	make -C $(PRINTF_DIR)
