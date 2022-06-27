@@ -6,7 +6,7 @@
 /*   By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 14:46:59 by sumsong           #+#    #+#             */
-/*   Updated: 2022/03/30 12:35:35 by sumsong          ###   ########.fr       */
+/*   Updated: 2022/06/27 12:27:28 by sumsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	ft_putnbr_base(char *base, unsigned long nb, int *cnt)
 		*cnt += ft_putchar(base[nb]);
 }
 
-void	ft_bzero(void *s, size_t n)
+void	ft_pf_bzero(void *s, size_t n)
 {
 	unsigned char	*ptr;
 
@@ -56,13 +56,13 @@ void	ft_bzero(void *s, size_t n)
 	}
 }
 
-void	*ft_my_calloc(size_t count, size_t size)
+void	*ft_pf_calloc(size_t count, size_t size)
 {
 	void	*ary;
 
 	ary = malloc(count * size);
 	if (!ary)
 		return (NULL);
-	ft_bzero(ary, count * size);
+	ft_pf_bzero(ary, count * size);
 	return (ary);
 }

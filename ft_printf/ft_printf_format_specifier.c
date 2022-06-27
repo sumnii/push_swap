@@ -6,7 +6,7 @@
 /*   By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 12:56:09 by sumsong           #+#    #+#             */
-/*   Updated: 2022/03/31 12:47:56 by sumsong          ###   ########.fr       */
+/*   Updated: 2022/06/27 12:28:05 by sumsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	ft_put_unsigned(va_list ap)
 		u.nb_copy = u.nb_copy / 10;
 		++u.len;
 	}
-	space = (char *)ft_my_calloc(sizeof(char), (u.len + 1));
+	space = (char *)ft_pf_calloc(sizeof(char), (u.len + 1));
 	if (!space)
 		return (0);
 	u.nb_copy = u.len;

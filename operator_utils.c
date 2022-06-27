@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operator.c                                         :+:      :+:    :+:   */
+/*   operator_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/26 00:33:25 by sumsong           #+#    #+#             */
-/*   Updated: 2022/06/27 12:48:07 by sumsong          ###   ########.fr       */
+/*   Created: 2022/06/27 11:41:04 by sumsong           #+#    #+#             */
+/*   Updated: 2022/06/27 12:43:52 by sumsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	swap_stack(int *stack, int len)
+void	swap_a_b(int *a, int *b)
 {
-	ft_printf("swap %d <-> %d\n\n", stack[len - 1], stack[len - 2]);
-	swap_a_b(&(stack[len - 1]), &(stack[len - 2]));
+	int	tmp;
+
+	tmp = *a;
+	*a = *b;
+	*b = tmp;
 }
-
-void	push_stack(int *stack_from, int *stack_to);
-
-void	rotate_stack(int *stack);
-
-void	reverse_rotate_stack(int *stack);
