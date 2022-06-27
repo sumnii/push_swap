@@ -6,7 +6,7 @@
 /*   By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 17:05:52 by sumsong           #+#    #+#             */
-/*   Updated: 2022/06/27 12:44:43 by sumsong          ###   ########.fr       */
+/*   Updated: 2022/06/27 12:51:49 by sumsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ int	main(int argc, char **argv)
 	swap_stack(stack_a, len);
 	int	j = 6;
 	while (--j >= 0)
-		ft_printf(" %d\n", stack_a[j]);
-	ft_printf("---\n a \n");
+		ft_printf("%d\n", stack_a[j]);
+	ft_printf("-\na \n");
 	free(stack_a);
 	return (0);
 }
@@ -42,7 +42,7 @@ int	*make_stack_a(int len, char **argv)
 	if (!stack_a)
 		return (NULL);
 	i = 0;
-	j = 0;
+	j = len - 1;
 	while (++i <= len)
 	{
 		stack_a[j] = ft_atoi(argv[i]);
@@ -51,11 +51,12 @@ int	*make_stack_a(int len, char **argv)
 			free(stack_a);
 			return (NULL);
 		}
-		++j;
+		--j;
 	}
+	j = len;
 	while (--j >= 0)
-		ft_printf(" %d\n", stack_a[j]);
-	ft_printf("---\n a \n\na is made!\n\n");
+		ft_printf("%d\n", stack_a[j]);
+	ft_printf("-\na \n\na is made!\n\n");
 	return (stack_a);
 }
 
