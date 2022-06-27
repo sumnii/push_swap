@@ -6,7 +6,7 @@
 /*   By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 00:33:25 by sumsong           #+#    #+#             */
-/*   Updated: 2022/06/27 13:48:48 by sumsong          ###   ########.fr       */
+/*   Updated: 2022/06/27 13:53:11 by sumsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	push_stack(int *stack_from, int *stack_to, int *len_from, int *len_to)
 {
 	ft_printf("push %d to another stack\n\n", stack_from[*len_from - 1]);
 	stack_to[*len_to] = stack_from[*len_from - 1];
-	stack_to[*len_from] = 0;
+	stack_from[*len_from - 1] = 0;
 	*len_to += 1;
 	*len_from -= 1;
 }
