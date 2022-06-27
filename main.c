@@ -6,7 +6,7 @@
 /*   By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 17:05:52 by sumsong           #+#    #+#             */
-/*   Updated: 2022/06/27 13:06:57 by sumsong          ###   ########.fr       */
+/*   Updated: 2022/06/27 13:38:50 by sumsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,24 @@ int	main(int argc, char **argv)
 {
 	int	*stack_a;
 	int	*stack_b;
-	int	len;
+	int	len_a;
+	int	len_b;
 
 	if (argc < 2)
 		return (ft_printf("Error\n"));
-	len = argc - 1;
-	stack_a = make_stack_a(len, argv);
+	len_a = argc - 1;
+	stack_a = make_stack_a(len_a, argv);
 	if (!stack_a)
 		return (ft_printf("Error\n"));
-	stack_b = make_stack_b(len);
+	stack_b = make_stack_b(len_a);
+	len_b = 0;
 	if (!stack_b)
 		return (ft_printf("Error\n"));
-	print_stack(stack_a, stack_b, len);
-	swap_stack(stack_a, len);
-	print_stack(stack_a, stack_b, len);
+	print_stack(stack_a, stack_b, len_a, len_b);
+	swap_stack(stack_a, len_a);
+	print_stack(stack_a, stack_b, len_a, len_b);
+	push_stack(stack_a, stack_b, &len_a, &len_b);
+	print_stack(stack_a, stack_b, len_a, len_b);
 	free(stack_a);
 	free(stack_b);
 	return (0);
@@ -84,9 +88,26 @@ int	dup_check(int *stack, int idx)
 }
 
 // This is temporary func for checking stack status.
-void	print_stack(int *stack_a, int *stack_b, int len)
+void	print_stack(int *stack_a, int *stack_b, int len_a, int len_b)
 {
-	while (--len >= 0)
-		ft_printf("%d %d\n", stack_a[len], stack_b[len]);
-	ft_printf("- -\na b\n");
+	--len_a;
+	--len_b;
+	while (len_a >= 0 || len_b >= 0)
+	{
+		if (len_a >= len_b)
+		{
+			if (len_a >= 0 && len_b == len_a)
+				ft_printf("%d %d\n", stack_a[len_a--], stack_b[len_b--]);
+			else
+				ft_printf("%d\n", stack_a[len_a--]);
+		}
+		else if (len_b > len_a)
+		{
+			if (len_b >= 0 && len_b == len_a)
+				ft_printf("%d %d\n", stack_a[len_a--], stack_b[len_b--]);
+			else
+				ft_printf("  %d\n", stack_b[len_b--]);
+		}
+	}
+	ft_printf("- -\na b\n\n");
 }
