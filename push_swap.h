@@ -6,7 +6,7 @@
 /*   By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 23:30:27 by sumsong           #+#    #+#             */
-/*   Updated: 2022/06/27 13:40:53 by sumsong          ###   ########.fr       */
+/*   Updated: 2022/06/27 13:47:02 by sumsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	print_stack(int *stack_a, int *stack_b, int len_a, int len_b); // tmp func
 void	swap_stack(int *stack, int len);
 void	push_stack(int *stack_from, int *stack_to, int *len_from, int *len_to);
 void	rotate_stack(int *stack, int len);
-void	reverse_rotate_stack(int *stack);
+void	reverse_rotate_stack(int *stack, int len);
 
 void	swap_a_b(int *a, int *b);
 
