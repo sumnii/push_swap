@@ -6,7 +6,7 @@
 /*   By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 17:05:52 by sumsong           #+#    #+#             */
-/*   Updated: 2022/06/26 00:23:14 by sumsong          ###   ########.fr       */
+/*   Updated: 2022/06/26 01:57:45 by sumsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,11 @@ int	main(int argc, char **argv)
 	stack_a = make_stack_a(argc, argv);
 	if (!stack_a)
 		return (ft_printf("Error\n"));
+	swap_stack(&stack_a);
+	int	j = 6;
+	while (--j >= 0)
+		ft_printf(" %d\n", stack_a[j]);
+	ft_printf("---\n a \n");
 	free(stack_a);
 	return (0);
 }
@@ -46,9 +51,9 @@ int	*make_stack_a(int argc, char **argv)
 		}
 		++j;
 	}
-	// j = -1;
-	// while (++j < argc - 1)
-	// 	ft_printf("[%d]%d ", j, stack_a[j]);
+	while (--j >= 0)
+		ft_printf(" %d\n", stack_a[j]);
+	ft_printf("---\n a \n\n");
 	return (stack_a);
 }
 

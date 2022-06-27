@@ -1,5 +1,6 @@
 push_swap
 *.o
+*.a
 ./Libft/*.o
 ./Libft/libft.a
 ./ft_print/*.o

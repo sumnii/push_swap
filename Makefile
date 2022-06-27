@@ -6,7 +6,7 @@
 #    By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/25 23:33:09 by sumsong           #+#    #+#              #
-#    Updated: 2022/06/25 23:54:07 by sumsong          ###   ########.fr        #
+#    Updated: 2022/06/26 01:04:56 by sumsong          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,13 +19,13 @@ AR				=	ar rcs
 RM				=	rm -f
 
 SRC_DIR			=	./
-LIBFT_DIR		=	./Libft/
+LIBFT_DIR		=	./libft/
 PRINTF_DIR		=	./ft_printf/
 
 LIBFT_FLAGS		=	-L$(LIBFT_DIR) -lft
 PRINTF_FLAGS	=	-L$(PRINTF_DIR) -lftprintf
 
-SRC				=	main.c
+SRC				=	main.c operator.c
 # BONUS_SRC		=	main_bonus.c
 
 SRCS			=	$(addprefix $(SRC_DIR), $(SRC))
