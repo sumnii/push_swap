@@ -6,7 +6,7 @@
 /*   By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 17:05:52 by sumsong           #+#    #+#             */
-/*   Updated: 2022/06/27 13:38:50 by sumsong          ###   ########.fr       */
+/*   Updated: 2022/06/27 13:44:40 by sumsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int	main(int argc, char **argv)
 	swap_stack(stack_a, len_a);
 	print_stack(stack_a, stack_b, len_a, len_b);
 	push_stack(stack_a, stack_b, &len_a, &len_b);
+	print_stack(stack_a, stack_b, len_a, len_b);
+	rotate_stack(stack_a, len_a);
 	print_stack(stack_a, stack_b, len_a, len_b);
 	free(stack_a);
 	free(stack_b);
