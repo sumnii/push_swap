@@ -6,7 +6,7 @@
 /*   By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 17:05:52 by sumsong           #+#    #+#             */
-/*   Updated: 2022/06/27 15:00:44 by sumsong          ###   ########.fr       */
+/*   Updated: 2022/06/29 18:23:54 by sumsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,25 +29,7 @@ int	main(int argc, char **argv)
 	len_b = 0;
 	if (!stack_b)
 		ft_exit(stack_a, stack_b, 1);
-	print_stack(stack_a, stack_b, len_a, len_b);
-	swap_stack(stack_a, len_a);
-	print_stack(stack_a, stack_b, len_a, len_b);
-	push_stack(stack_a, stack_b, &len_a, &len_b);
-	push_stack(stack_a, stack_b, &len_a, &len_b);
-	push_stack(stack_a, stack_b, &len_a, &len_b);
-	print_stack(stack_a, stack_b, len_a, len_b);
-	rotate_stack(stack_a, len_a);
-	rotate_stack(stack_b, len_b);
-	print_stack(stack_a, stack_b, len_a, len_b);
-	reverse_rotate_stack(stack_a, len_a);
-	reverse_rotate_stack(stack_b, len_b);
-	print_stack(stack_a, stack_b, len_a, len_b);
-	swap_stack(stack_a, len_a);
-	print_stack(stack_a, stack_b, len_a, len_b);
-	push_stack(stack_b, stack_a, &len_b, &len_a);
-	push_stack(stack_b, stack_a, &len_b, &len_a);
-	push_stack(stack_b, stack_a, &len_b, &len_a);
-	print_stack(stack_a, stack_b, len_a, len_b);
+	test_operator(stack_a, stack_b, len_a, len_b);
 	ft_exit(stack_a, stack_b, 0);
 	return (0);
 }
@@ -86,4 +68,27 @@ void	print_stack(int *stack_a, int *stack_b, int len_a, int len_b)
 		}
 	}
 	ft_printf("- -\na b\n\n");
+}
+
+void	test_operator(stack_a, stack_b, len_a, len_b)
+{
+	print_stack(stack_a, stack_b, len_a, len_b);
+	swap_stack(stack_a, len_a);
+	print_stack(stack_a, stack_b, len_a, len_b);
+	push_stack(stack_a, stack_b, &len_a, &len_b);
+	push_stack(stack_a, stack_b, &len_a, &len_b);
+	push_stack(stack_a, stack_b, &len_a, &len_b);
+	print_stack(stack_a, stack_b, len_a, len_b);
+	rotate_stack(stack_a, len_a);
+	rotate_stack(stack_b, len_b);
+	print_stack(stack_a, stack_b, len_a, len_b);
+	reverse_rotate_stack(stack_a, len_a);
+	reverse_rotate_stack(stack_b, len_b);
+	print_stack(stack_a, stack_b, len_a, len_b);
+	swap_stack(stack_a, len_a);
+	print_stack(stack_a, stack_b, len_a, len_b);
+	push_stack(stack_b, stack_a, &len_b, &len_a);
+	push_stack(stack_b, stack_a, &len_b, &len_a);
+	push_stack(stack_b, stack_a, &len_b, &len_a);
+	print_stack(stack_a, stack_b, len_a, len_b);
 }

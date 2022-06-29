@@ -1,8 +1,9 @@
 push_swap
 *.o
 *.a
-./Libft/*.o
-./Libft/libft.a
-./ft_print/*.o
-./ft_print/libftprintf.a
 */README.md
+cmake-build-debug/
+CMakeLists.txt
+.idea/
+.vscode/
+.DS_Store

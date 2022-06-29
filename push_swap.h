@@ -6,7 +6,7 @@
 /*   By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 23:30:27 by sumsong           #+#    #+#             */
-/*   Updated: 2022/06/27 15:00:01 by sumsong          ###   ########.fr       */
+/*   Updated: 2022/06/29 18:24:16 by sumsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 # include "ft_printf/ft_printf.h"
 
 void	ft_exit(int *stack_a, int *stack_b, int flag);
-void	print_stack(int *stack_a, int *stack_b, int len_a, int len_b); // tmp func
+void	print_stack(int *stack_a, int *stack_b, int len_a, int len_b); // tmp
+void	test_operator(stack_a, stack_b, len_a, len_b); // tmp func
 
 int		*make_stack_a(int len, char **argv);
 int		*make_stack_b(int len);
