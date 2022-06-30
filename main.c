@@ -6,7 +6,7 @@
 /*   By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 17:05:52 by sumsong           #+#    #+#             */
-/*   Updated: 2022/06/29 18:23:54 by sumsong          ###   ########.fr       */
+/*   Updated: 2022/06/30 15:07:37 by sumsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	print_stack(int *stack_a, int *stack_b, int len_a, int len_b)
 	ft_printf("- -\na b\n\n");
 }
 
-void	test_operator(stack_a, stack_b, len_a, len_b)
+void	test_operator(int *stack_a, int *stack_b, int len_a, int len_b)
 {
 	print_stack(stack_a, stack_b, len_a, len_b);
 	swap_stack(stack_a, len_a);

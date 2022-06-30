@@ -6,7 +6,7 @@
 /*   By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 14:52:50 by sumsong           #+#    #+#             */
-/*   Updated: 2022/06/27 14:53:08 by sumsong          ###   ########.fr       */
+/*   Updated: 2022/06/30 15:06:10 by sumsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ int	*make_stack_a(int len, char **argv)
 	stack_a = (int *)malloc(len * sizeof(int));
 	if (!stack_a)
 		return (NULL);
-	i = 0;
+	i = -1;
 	j = len - 1;
-	while (++i <= len)
+	while (++i < len)
 	{
-		stack_a[j] = ft_atoi(argv[i]);
+		stack_a[i] = ft_atoi(argv[j]);
 		if ((*(argv[i]) != '0' && stack_a[j] == 0) || dup_check(stack_a, j))
 		{
 			free(stack_a);
