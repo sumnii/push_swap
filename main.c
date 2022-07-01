@@ -6,7 +6,7 @@
 /*   By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 17:05:52 by sumsong           #+#    #+#             */
-/*   Updated: 2022/06/30 15:07:37 by sumsong          ###   ########.fr       */
+/*   Updated: 2022/07/01 14:16:37 by sumsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,23 @@
 
 int	main(int argc, char **argv)
 {
-	int	*stack_a;
-	int	*stack_b;
-	int	len_a;
-	int	len_b;
+	t_stack	a;
+	t_stack	b;
 
 	if (argc < 2)
 		return (ft_printf("Error\n"));
-	len_a = argc - 1;
-	stack_a = make_stack_a(len_a, argv);
-	if (!stack_a)
+	a.len = argc - 1;
+	a.stack = make_stack_a(a.len, argv);
+	if (!a.stack)
 		return (ft_printf("Error\n"));
-	stack_b = make_stack_b(len_a);
-	len_b = 0;
-	if (!stack_b)
-		ft_exit(stack_a, stack_b, 1);
-	test_operator(stack_a, stack_b, len_a, len_b);
-	ft_exit(stack_a, stack_b, 0);
+	b.stack = make_stack_b(a.len);
+	b.len = 0;
+	if (!b.stack)
+		ft_exit(a.stack, b.stack, 1);
+	pivoting(&a, a.len / 2, &b);
+	print_stack(a, b);
+	// test_operator(a, b);
+	ft_exit(a.stack, b.stack, 0);
 	return (0);
 }
 
@@ -46,49 +46,49 @@ void	ft_exit(int *stack_a, int *stack_b, int flag)
 }
 
 // This is temporary func for checking stack status.
-void	print_stack(int *stack_a, int *stack_b, int len_a, int len_b)
+void	print_stack(t_stack a, t_stack b)
 {
-	--len_a;
-	--len_b;
-	while (len_a >= 0 || len_b >= 0)
+	--a.len;
+	--b.len;
+	while (a.len >= 0 || b.len >= 0)
 	{
-		if (len_a >= len_b)
+		if (a.len >= b.len)
 		{
-			if (len_a >= 0 && len_b == len_a)
-				ft_printf("%d %d\n", stack_a[len_a--], stack_b[len_b--]);
+			if (a.len >= 0 && b.len == a.len)
+				ft_printf("%d %d\n", a.stack[a.len--], b.stack[b.len--]);
 			else
-				ft_printf("%d\n", stack_a[len_a--]);
+				ft_printf("%d\n", a.stack[a.len--]);
 		}
-		else if (len_b > len_a)
+		else if (b.len > a.len)
 		{
-			if (len_b >= 0 && len_b == len_a)
-				ft_printf("%d %d\n", stack_a[len_a--], stack_b[len_b--]);
+			if (b.len >= 0 && b.len == a.len)
+				ft_printf("%d %d\n", a.stack[a.len--], b.stack[b.len--]);
 			else
-				ft_printf("  %d\n", stack_b[len_b--]);
+				ft_printf("  %d\n", b.stack[b.len--]);
 		}
 	}
 	ft_printf("- -\na b\n\n");
 }
 
-void	test_operator(int *stack_a, int *stack_b, int len_a, int len_b)
+void	test_operator(t_stack a, t_stack b)
 {
-	print_stack(stack_a, stack_b, len_a, len_b);
-	swap_stack(stack_a, len_a);
-	print_stack(stack_a, stack_b, len_a, len_b);
-	push_stack(stack_a, stack_b, &len_a, &len_b);
-	push_stack(stack_a, stack_b, &len_a, &len_b);
-	push_stack(stack_a, stack_b, &len_a, &len_b);
-	print_stack(stack_a, stack_b, len_a, len_b);
-	rotate_stack(stack_a, len_a);
-	rotate_stack(stack_b, len_b);
-	print_stack(stack_a, stack_b, len_a, len_b);
-	reverse_rotate_stack(stack_a, len_a);
-	reverse_rotate_stack(stack_b, len_b);
-	print_stack(stack_a, stack_b, len_a, len_b);
-	swap_stack(stack_a, len_a);
-	print_stack(stack_a, stack_b, len_a, len_b);
-	push_stack(stack_b, stack_a, &len_b, &len_a);
-	push_stack(stack_b, stack_a, &len_b, &len_a);
-	push_stack(stack_b, stack_a, &len_b, &len_a);
-	print_stack(stack_a, stack_b, len_a, len_b);
+	print_stack(a, b);
+	swap_stack(a.stack, a.len);
+	print_stack(a, b);
+	push_stack(a.stack, b.stack, &a.len, &b.len);
+	push_stack(a.stack, b.stack, &a.len, &b.len);
+	push_stack(a.stack, b.stack, &a.len, &b.len);
+	print_stack(a, b);
+	rotate_stack(a.stack, a.len);
+	rotate_stack(b.stack, b.len);
+	print_stack(a, b);
+	reverse_rotate_stack(a.stack, a.len);
+	reverse_rotate_stack(b.stack, b.len);
+	print_stack(a, b);
+	swap_stack(a.stack, a.len);
+	print_stack(a, b);
+	push_stack(b.stack, a.stack, &b.len, &a.len);
+	push_stack(b.stack, a.stack, &b.len, &a.len);
+	push_stack(b.stack, a.stack, &b.len, &a.len);
+	print_stack(a, b);
 }
