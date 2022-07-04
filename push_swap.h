@@ -6,7 +6,7 @@
 /*   By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 23:30:27 by sumsong           #+#    #+#             */
-/*   Updated: 2022/07/04 13:39:57 by sumsong          ###   ########.fr       */
+/*   Updated: 2022/07/04 14:45:16 by sumsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_stk {
 t_stk	*struct_init(void);
 void	ft_exit(t_stk *stack_a, t_stk *stack_b, int flag);
 
+int		parcing_args(int argc, char **argv);
 int		make_stack_a(t_stk *stack_a, char **argv);
 int		make_stack_b(t_stk *stack_b, int len);
 int		dup_check(t_nb *stack, int idx);
@@ -47,7 +48,7 @@ void	pivoting_b(t_stk *a, t_stk *b, int cnt);
 int		sort_two_in_a(t_stk *a, int len);
 int		sort_two_in_b(t_stk *b, int len);
 
-void	print_stack(t_stk a, t_stk b); // tmp func
-void	test_operator(t_stk a, t_stk b); // tmp func
+void	print_stack(t_stk a, t_stk b); // for testing func
+void	test_operator(t_stk a, t_stk b); // for testing func
 
 #endif

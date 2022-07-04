@@ -6,11 +6,28 @@
 /*   By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 14:52:50 by sumsong           #+#    #+#             */
-/*   Updated: 2022/07/01 18:34:56 by sumsong          ###   ########.fr       */
+/*   Updated: 2022/07/04 14:50:46 by sumsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	parcing_args(int argc, char **argv)
+{
+	static int	i = 0;
+	int			j;
+	static int	cnt = 0;
+	char		**res;
+
+	while (++i < argc)
+	{
+		j = -1;
+		res = ft_split(argv[i], ' ');
+		while (res[++j])
+			++cnt;
+	}
+	return (cnt);
+}
 
 int	make_stack_a(t_stk *stack_a, char **argv)
 {

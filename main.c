@@ -6,7 +6,7 @@
 /*   By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 17:05:52 by sumsong           #+#    #+#             */
-/*   Updated: 2022/07/04 13:32:03 by sumsong          ###   ########.fr       */
+/*   Updated: 2022/07/04 14:46:23 by sumsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	main(int argc, char **argv)
 
 	if (argc < 2)
 		return (ft_printf("Error\n"));
+	ft_printf("cnt : %d\n", parcing_args(argc, argv));
 	a = struct_init();
 	b = struct_init();
 	if (!a || !b)
@@ -29,14 +30,9 @@ int	main(int argc, char **argv)
 	if (!make_stack_b(b, a->len))
 		ft_exit(a, b, 1);
 	b->len = 0;
-	print_stack(*a, *b);
-	pivoting_a(a, b, a->len);
-	// ft_printf("-------------------------\n");
-	// sleep(1);
-	// while (b->len > 2)
-		// pivoting_b(b, b->len / 2, a);
 	// print_stack(*a, *b);
-	// test_operator(a, b);
+	pivoting_a(a, b, a->len);
+	// print_stack(*a, *b);
 	ft_exit(a, b, 0);
 }
 
