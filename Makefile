@@ -6,7 +6,7 @@
 #    By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/25 23:33:09 by sumsong           #+#    #+#              #
-#    Updated: 2022/07/04 18:04:29 by sumsong          ###   ########.fr        #
+#    Updated: 2022/07/05 00:11:49 by sumsong          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,8 +25,11 @@ PRINTF_DIR		=	./ft_printf/
 LIBFT_FLAGS		=	-L$(LIBFT_DIR) -lft
 PRINTF_FLAGS	=	-L$(PRINTF_DIR) -lftprintf
 
-SRC				=	main.c stack_init.c operator.c operator_utils.c pivoting.c \
-					a3_hard_sort.c b3_hard_sort.c testing.c
+SRC				=	main.c arg_check.c stack_init.c \
+					operator.c operator_utils.c \
+					pivoting.c \
+					a3_hard_sort.c b3_hard_sort.c \
+					testing.c
 # BONUS_SRC		=	main_bonus.c
 
 SRCS			=	$(addprefix $(SRC_DIR), $(SRC))
