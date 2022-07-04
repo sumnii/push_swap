@@ -6,7 +6,7 @@
 /*   By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 14:52:50 by sumsong           #+#    #+#             */
-/*   Updated: 2022/07/04 14:50:46 by sumsong          ###   ########.fr       */
+/*   Updated: 2022/07/04 15:29:24 by sumsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,29 +29,38 @@ int	parcing_args(int argc, char **argv)
 	return (cnt);
 }
 
-int	make_stack_a(t_stk *stack_a, char **argv)
+int	make_stack_a(t_stk *stack_a, int argc, char **argv)
 {
 	t_nb	*new;
 	int		i;
 	int		j;
+	int		k;
+	char	**split;
 
 	new = (t_nb *)malloc(stack_a->len * sizeof(t_nb));
 	if (!new)
 		return (0);
 	stack_a->name = 'a';
 	i = -1;
-	j = stack_a->len;
-	while (++i < stack_a->len)
+	j = stack_a->len - 1;
+	k = 0;
+	while (k < argc - 1)
 	{
-		if ((ft_strlen(argv[j]) == 10 && argv[j][0] != '-'
-			&& ft_strncmp("2147483647", argv[j], 10) < 0)
-		|| (ft_strlen(argv[j]) == 11 && argv[j][0] == '-'
-		&& ft_strncmp("-2147483648", argv[j], 11) < 0))
-			return (error_return(new));
-		new[i].n = ft_atoi(argv[j]);
-		if ((*(argv[j]) != '0' && new[i].n == 0) || dup_check(new, i))
-			return (error_return(new));
-		--j;
+		split = ft_split(argv[++k], ' ');
+		i = -1;
+		while (split[++i])
+		{
+			if ((ft_strlen(split[i]) == 10 && split[i][0] != '-'
+				&& ft_strncmp("2147483647", split[i], 10) < 0)
+			|| (ft_strlen(split[i]) == 11 && split[i][0] == '-'
+			&& ft_strncmp("-2147483648", split[i], 11) < 0))
+				return (error_return(new));
+			new[j].n = ft_atoi(split[i]);
+			if ((*(split[i]) != '0' && new[j].n == 0)
+				|| dup_check(new, stack_a->len, j))
+				return (error_return(new));
+			--j;
+		}
 	}
 	(*stack_a).stack = new;
 	return (1);
@@ -69,16 +78,16 @@ int	make_stack_b(t_stk *stack_b, int len)
 	return (1);
 }
 
-int	dup_check(t_nb *stack, int idx)
+int	dup_check(t_nb *stack, int s_len, int idx)
 {
 	int	i;
 
-	i = 0;
-	while (i < idx)
+	i = s_len - 1;
+	while (idx < i)
 	{
 		if (stack[i].n == stack[idx].n)
 			return (1);
-		++i;
+		--i;
 	}
 	return (0);
 }

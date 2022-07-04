@@ -6,7 +6,7 @@
 /*   By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 23:30:27 by sumsong           #+#    #+#             */
-/*   Updated: 2022/07/04 14:45:16 by sumsong          ###   ########.fr       */
+/*   Updated: 2022/07/04 15:18:49 by sumsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ t_stk	*struct_init(void);
 void	ft_exit(t_stk *stack_a, t_stk *stack_b, int flag);
 
 int		parcing_args(int argc, char **argv);
-int		make_stack_a(t_stk *stack_a, char **argv);
+int		make_stack_a(t_stk *stack_a, int argc, char **argv);
 int		make_stack_b(t_stk *stack_b, int len);
-int		dup_check(t_nb *stack, int idx);
+int		dup_check(t_nb *stack, int s_len, int idx);
 int		error_return(t_nb *stack);
 
 void	swap_stack(t_stk *stack, int len);
