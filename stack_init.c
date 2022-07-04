@@ -6,13 +6,13 @@
 /*   By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 14:52:50 by sumsong           #+#    #+#             */
-/*   Updated: 2022/07/04 15:29:24 by sumsong          ###   ########.fr       */
+/*   Updated: 2022/07/04 23:43:10 by sumsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	parcing_args(int argc, char **argv)
+int	count_args(int argc, char **argv)
 {
 	static int	i = 0;
 	int			j;
@@ -23,8 +23,11 @@ int	parcing_args(int argc, char **argv)
 	{
 		j = -1;
 		res = ft_split(argv[i], ' ');
+		if (!res)
+			return (0);
 		while (res[++j])
 			++cnt;
+		free_split(res);
 	}
 	return (cnt);
 }
@@ -54,13 +57,14 @@ int	make_stack_a(t_stk *stack_a, int argc, char **argv)
 				&& ft_strncmp("2147483647", split[i], 10) < 0)
 			|| (ft_strlen(split[i]) == 11 && split[i][0] == '-'
 			&& ft_strncmp("-2147483648", split[i], 11) < 0))
-				return (error_return(new));
+				return (error_return(new, split));
 			new[j].n = ft_atoi(split[i]);
 			if ((*(split[i]) != '0' && new[j].n == 0)
 				|| dup_check(new, stack_a->len, j))
-				return (error_return(new));
+				return (error_return(new, split));
 			--j;
 		}
+		free_split(split);
 	}
 	(*stack_a).stack = new;
 	return (1);
@@ -92,9 +96,28 @@ int	dup_check(t_nb *stack, int s_len, int idx)
 	return (0);
 }
 
-int	error_return(t_nb *stack)
+void	free_split(char **split)
+{
+	int	i;
+
+	i = 0;
+	while (split[i])
+		free(split++);
+	free(split);
+}
+
+int	error_return(t_nb *stack, char **split)
 {
 	if (stack)
 		free(stack);
+	if (split)
+	{
+		while (*split)
+		{
+			free(*split);
+			++split;
+		}
+		free(split);
+	}
 	return (0);
 }
