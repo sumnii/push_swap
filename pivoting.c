@@ -6,7 +6,7 @@
 /*   By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 13:44:02 by sumsong           #+#    #+#             */
-/*   Updated: 2022/07/04 18:33:07 by sumsong          ###   ########.fr       */
+/*   Updated: 2022/07/04 19:09:08 by sumsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,9 @@ void	pivoting_a(t_stk *a, t_stk *b, int cnt)
 			++ra;
 		}
 		--cnt;
-		print_stack(*a, *b);
+		// print_stack(*a, *b);
 	}
+	print_stack(*a, *b);
 	i = ra;
 	// ft_printf("-- for rr -- a->len%d - pb%d vs ra%d\n\n", len_cpy, pb, ra);
 	if (len_cpy - pb != ra)
@@ -79,7 +80,7 @@ void	pivoting_b(t_stk *a, t_stk *b, int cnt)
 		return ;
 	}
 	len_cpy = b->len;
-	pivot = b->stack[(b->len) - (cnt / 2) - 1].n;
+	pivot = b->stack[(b->len) - (cnt / 2)].n;
 	ft_printf("---- pivot : %d\n\n", pivot);
 	i = b->len - 1;
 	++new;
@@ -99,8 +100,9 @@ void	pivoting_b(t_stk *a, t_stk *b, int cnt)
 			++rb;
 		}
 		--cnt;
-		print_stack(*a, *b);
+		// print_stack(*a, *b);
 	}
+	print_stack(*a, *b);
 	i = rb;
 	// ft_printf("-- for rr -- b->len%d - pa%d vs rb%d\n\n", len_cpy, pa, rb);
 	if (len_cpy - pa != rb)

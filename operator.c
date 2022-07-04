@@ -6,7 +6,7 @@
 /*   By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 00:33:25 by sumsong           #+#    #+#             */
-/*   Updated: 2022/07/04 17:09:20 by sumsong          ###   ########.fr       */
+/*   Updated: 2022/07/04 19:06:56 by sumsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	reverse_rotate_stack(t_stk stack, int len)
 	while (i + 1 < len)
 	{
 		swap_a_b(&(stack.stack[i].n), &(stack.stack[i + 1].n));
-		swap_a_b(&(stack.stack[len - 1].flag), &(stack.stack[len - 2].flag));
+		swap_a_b(&(stack.stack[i].flag), &(stack.stack[i + 1].flag));
 		++i;
 	}
 }
