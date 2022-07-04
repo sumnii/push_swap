@@ -6,7 +6,7 @@
 /*   By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 17:05:52 by sumsong           #+#    #+#             */
-/*   Updated: 2022/07/01 15:52:18 by sumsong          ###   ########.fr       */
+/*   Updated: 2022/07/04 13:32:03 by sumsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,80 +14,53 @@
 
 int	main(int argc, char **argv)
 {
-	t_stk	a;
-	t_stk	b;
+	t_stk	*a;
+	t_stk	*b;
 
 	if (argc < 2)
 		return (ft_printf("Error\n"));
-	a.len = argc - 1;
-	if (!make_stack_a(&a, argv))
-		return (ft_printf("Error\n"));
-	if (!make_stack_b(&b, a.len))
-		ft_exit(a.stack, b.stack, 1);
-	b.len = 0;
-	// pivoting(&a, a.len / 2, &b);
-	// print_stack(a, b);
-	test_operator(a, b);
-	ft_exit(a.stack, b.stack, 0);
-	return (0);
+	a = struct_init();
+	b = struct_init();
+	if (!a || !b)
+		ft_exit(a, b, 1);
+	a->len = argc - 1;
+	if (!make_stack_a(a, argv))
+		ft_exit(a, b, 1);
+	if (!make_stack_b(b, a->len))
+		ft_exit(a, b, 1);
+	b->len = 0;
+	print_stack(*a, *b);
+	pivoting_a(a, b, a->len);
+	// ft_printf("-------------------------\n");
+	// sleep(1);
+	// while (b->len > 2)
+		// pivoting_b(b, b->len / 2, a);
+	// print_stack(*a, *b);
+	// test_operator(a, b);
+	ft_exit(a, b, 0);
 }
 
-void	ft_exit(t_nb *stack_a, t_nb *stack_b, int flag)
+t_stk	*struct_init(void)
 {
+	t_stk	*stk;
+
+	stk = (t_stk *)malloc(sizeof(t_stk));
+	if (!stk)
+		return (NULL);
+	return (stk);
+}
+
+void	ft_exit(t_stk *stack_a, t_stk *stack_b, int flag)
+{
+	if (stack_a->stack)
+		free(stack_a->stack);
 	if (stack_a)
 		free(stack_a);
+	if (stack_b->stack)
+		free(stack_b->stack);
 	if (stack_b)
 		free(stack_b);
 	if (flag == 1)
 		ft_printf("Error\n");
 	exit (1);
-}
-
-// This is temporary func for checking stack status.
-void	print_stack(t_stk a, t_stk b)
-{
-	--a.len;
-	--b.len;
-	ft_printf("\n");
-	while (a.len >= 0 || b.len >= 0)
-	{
-		if (a.len >= b.len)
-		{
-			if (a.len >= 0 && b.len == a.len)
-				ft_printf("%d %d\n", a.stack[a.len--], b.stack[b.len--]);
-			else
-				ft_printf("%d\n", a.stack[a.len--]);
-		}
-		else if (b.len > a.len)
-		{
-			if (b.len >= 0 && b.len == a.len)
-				ft_printf("%d %d\n", a.stack[a.len--], b.stack[b.len--]);
-			else
-				ft_printf("  %d\n", b.stack[b.len--]);
-		}
-	}
-	ft_printf("- -\na b\n\n");
-}
-
-void	test_operator(t_stk a, t_stk b)
-{
-	print_stack(a, b);
-	swap_stack(a, a.len);
-	print_stack(a, b);
-	push_stack(a, b, &a.len, &b.len);
-	push_stack(a, b, &a.len, &b.len);
-	push_stack(a, b, &a.len, &b.len);
-	print_stack(a, b);
-	rotate_stack(a, a.len);
-	rotate_stack(b, b.len);
-	print_stack(a, b);
-	reverse_rotate_stack(a, a.len);
-	reverse_rotate_stack(b, b.len);
-	print_stack(a, b);
-	swap_stack(a, a.len);
-	print_stack(a, b);
-	push_stack(b, a, &b.len, &a.len);
-	push_stack(b, a, &b.len, &a.len);
-	push_stack(b, a, &b.len, &a.len);
-	print_stack(a, b);
 }
