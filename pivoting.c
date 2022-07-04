@@ -6,7 +6,7 @@
 /*   By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 13:44:02 by sumsong           #+#    #+#             */
-/*   Updated: 2022/07/04 15:48:57 by sumsong          ###   ########.fr       */
+/*   Updated: 2022/07/04 18:33:07 by sumsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,18 @@ void	pivoting_a(t_stk *a, t_stk *b, int cnt)
 	int			pb;
 	int			ra;
 	static int	new = 0;
-	int			cnt_cpy;
+	int			len_cpy;
 
-	if (cnt == 2)
-		cnt = sort_two_in_a(a, a->len);
-	if (cnt <= 1)
+	ft_printf("---- cnt : %d\n\n", cnt);
+	if (cnt <= 3)
+	{
+		hard_sort_in_a(a, a->len, cnt);
+		print_stack(*a, *b);
 		return ;
-	cnt_cpy = cnt;
+	}
+	len_cpy = a->len;
 	pivot = a->stack[(a->len) - (cnt / 2) - 1].n;
+	ft_printf("---- pivot : %d\n\n", pivot);
 	i = a->len - 1;
 	++new;
 	ra = 0;
@@ -45,12 +49,16 @@ void	pivoting_a(t_stk *a, t_stk *b, int cnt)
 			++ra;
 		}
 		--cnt;
+		print_stack(*a, *b);
 	}
 	i = ra;
-	if (cnt_cpy - pb != ra)
+	// ft_printf("-- for rr -- a->len%d - pb%d vs ra%d\n\n", len_cpy, pb, ra);
+	if (len_cpy - pb != ra)
 		while (i--)
 			reverse_rotate_stack(*a, a->len);
+	ft_printf("---- call a to b ----\n\n");
 	pivoting_a(a, b, ra);
+	ft_printf("---- call b to a ----\n\n");
 	pivoting_b(a, b, pb);
 }
 
@@ -61,20 +69,18 @@ void	pivoting_b(t_stk *a, t_stk *b, int cnt)
 	int			pa;
 	int			rb;
 	static int	new = 0;
-	int			cnt_cpy;
+	int			len_cpy;
 
-	if (cnt == 2)
+	ft_printf("---- cnt : %d\n\n", cnt);
+	if (cnt <= 3)
 	{
-		cnt = sort_two_in_b(b, b->len);
-		push_stack(b, a);
-	}
-	if (cnt == 1)
-	{
-		push_stack(b, a);
+		hard_sort_in_b(a, b, b->len, cnt);
+		print_stack(*a, *b);
 		return ;
 	}
-	cnt_cpy = cnt;
+	len_cpy = b->len;
 	pivot = b->stack[(b->len) - (cnt / 2) - 1].n;
+	ft_printf("---- pivot : %d\n\n", pivot);
 	i = b->len - 1;
 	++new;
 	pa = 0;
@@ -93,28 +99,111 @@ void	pivoting_b(t_stk *a, t_stk *b, int cnt)
 			++rb;
 		}
 		--cnt;
+		print_stack(*a, *b);
 	}
 	i = rb;
-	if (cnt_cpy - pa != rb)
+	// ft_printf("-- for rr -- b->len%d - pa%d vs rb%d\n\n", len_cpy, pa, rb);
+	if (len_cpy - pa != rb)
 		while (i--)
 			reverse_rotate_stack(*b, b->len);
+	print_stack(*a, *b);
+	ft_printf("---- call a to b ----\n\n");
 	pivoting_a(a, b, pa);
+	ft_printf("---- call b to a ----\n\n");
 	pivoting_b(a, b, rb);
+}
+
+void	hard_sort_in_a(t_stk *a, int len, int cnt)
+{
+	ft_printf("--- hard sort A! cnt %d\n\n", cnt);
+	if (cnt == 2)
+		sort_two_in_a(a, len);
+	else if (cnt == 3)
+		sort_three_in_a(a, len);
+}
+
+void	hard_sort_in_b(t_stk *a, t_stk *b, int len, int cnt)
+{
+	ft_printf("--- hard sort B! cnt %d\n\n", cnt);
+	if (cnt == 0)
+		return ;
+	else if (cnt == 2)
+	{
+		sort_two_in_b(b, len);
+		push_stack(b, a);
+	}
+	else if (cnt == 3)
+	{
+		sort_three_in_b(b, len);
+		push_stack(b, a);
+		push_stack(b, a);
+	}
+	push_stack(b, a);
+}
+
+int	sort_three_in_a(t_stk *a, int len)
+{
+	int	first;
+	int	second;
+	int	third;
+
+	first = a->stack[len - 1].n;
+	second = a->stack[len - 2].n;
+	third = a->stack[len - 3].n;
+	if (first < third && third < second)
+		a_sort_1_3_2(a);
+	else if (second < first && first < third)
+		a_sort_2_1_3(a);
+	else if (third < first && first < second)
+		a_sort_2_3_1(a);
+	else if (second < third && third < first)
+		a_sort_3_1_2(a);
+	else if (third < second && second < first)
+		a_sort_3_2_1(a);
+	return (1);
 }
 
 int	sort_two_in_a(t_stk *a, int len)
 {
-	if (a->stack[len - 1].n > a->stack[len - 2].n)
+	int	first;
+	int	second;
+
+	first = a->stack[len - 1].n;
+	second = a->stack[len - 2].n;
+	if (first < second)
+		return (1);
+	else
 	{
 		swap_stack(a, a->len);
 		return (1);
 	}
-	else
-		return (1);
+}
+
+int	sort_three_in_b(t_stk *b, int len)
+{
+	int	first;
+	int	second;
+	int	third;
+
+	first = b->stack[len - 1].n;
+	second = b->stack[len - 2].n;
+	third = b->stack[len - 3].n;
+	if (first < second && second < third)
+		b_sort_1_2_3(b);
+	else if (first < third && third < second)
+		b_sort_1_3_2(b);
+	else if (second < first && first < third)
+		b_sort_2_1_3(b);
+	else if (third < first && first < second)
+		b_sort_2_3_1(b);
+	else if (second < third && third < first)
+		b_sort_3_1_2(b);
+	return (1);
 }
 
 int	sort_two_in_b(t_stk *b, int len)
 {
+	// ft_printf("--- hard sort B! len %d\n\n", len);
 	if (b->stack[len - 1].n > b->stack[len - 2].n)
 		return (1);
 	else
