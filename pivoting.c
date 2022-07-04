@@ -6,7 +6,7 @@
 /*   By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 13:44:02 by sumsong           #+#    #+#             */
-/*   Updated: 2022/07/04 14:08:33 by sumsong          ###   ########.fr       */
+/*   Updated: 2022/07/04 15:48:57 by sumsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,13 @@ void	pivoting_a(t_stk *a, t_stk *b, int cnt)
 	int			pb;
 	int			ra;
 	static int	new = 0;
+	int			cnt_cpy;
 
 	if (cnt == 2)
 		cnt = sort_two_in_a(a, a->len);
 	if (cnt <= 1)
 		return ;
+	cnt_cpy = cnt;
 	pivot = a->stack[(a->len) - (cnt / 2) - 1].n;
 	i = a->len - 1;
 	++new;
@@ -45,8 +47,9 @@ void	pivoting_a(t_stk *a, t_stk *b, int cnt)
 		--cnt;
 	}
 	i = ra;
-	while (i--)
-		reverse_rotate_stack(*a, a->len);
+	if (cnt_cpy - pb != ra)
+		while (i--)
+			reverse_rotate_stack(*a, a->len);
 	pivoting_a(a, b, ra);
 	pivoting_b(a, b, pb);
 }
@@ -58,6 +61,7 @@ void	pivoting_b(t_stk *a, t_stk *b, int cnt)
 	int			pa;
 	int			rb;
 	static int	new = 0;
+	int			cnt_cpy;
 
 	if (cnt == 2)
 	{
@@ -69,6 +73,7 @@ void	pivoting_b(t_stk *a, t_stk *b, int cnt)
 		push_stack(b, a);
 		return ;
 	}
+	cnt_cpy = cnt;
 	pivot = b->stack[(b->len) - (cnt / 2) - 1].n;
 	i = b->len - 1;
 	++new;
@@ -90,8 +95,9 @@ void	pivoting_b(t_stk *a, t_stk *b, int cnt)
 		--cnt;
 	}
 	i = rb;
-	while (i--)
-		reverse_rotate_stack(*b, b->len);
+	if (cnt_cpy - pa != rb)
+		while (i--)
+			reverse_rotate_stack(*b, b->len);
 	pivoting_a(a, b, pa);
 	pivoting_b(a, b, rb);
 }
