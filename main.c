@@ -6,7 +6,7 @@
 /*   By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 17:05:52 by sumsong           #+#    #+#             */
-/*   Updated: 2022/07/04 17:19:31 by sumsong          ###   ########.fr       */
+/*   Updated: 2022/07/04 19:12:17 by sumsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,7 @@ int	main(int argc, char **argv)
 	if (!make_stack_b(b, a->len))
 		ft_exit(a, b, 1);
 	b->len = 0;
-	// print_stack(*a, *b);
 	pivoting_a(a, b, a->len);
-	// print_stack(*a, *b);
 	ft_exit(a, b, 0);
 }
 
