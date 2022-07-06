@@ -6,7 +6,7 @@
 /*   By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 17:05:52 by sumsong           #+#    #+#             */
-/*   Updated: 2022/07/05 00:27:09 by sumsong          ###   ########.fr       */
+/*   Updated: 2022/07/06 16:30:44 by sumsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	main(int argc, char **argv)
 		ft_exit(a, b, 1);
 	b->len = 0;
 	pivoting_a(a, b, a->len);
+	// print_stack(*a, *b);
 	ft_exit(a, b, 0);
 }
 

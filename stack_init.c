@@ -6,7 +6,7 @@
 /*   By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 14:52:50 by sumsong           #+#    #+#             */
-/*   Updated: 2022/07/05 00:24:59 by sumsong          ###   ########.fr       */
+/*   Updated: 2022/07/06 16:32:48 by sumsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	make_stack_a(t_stk *a, int argc, char **argv)
 			a->stack[j].n = ft_atoi(split[i]);
 			if (!int_range_check(split[i]) || !dup_check(a->stack, a->len, j)
 				|| !atoi_error_check(split[i], a->stack[j]))
-				return (error_return(a->stack, split));
+				return (error_return(a, split));
 			--j;
 		}
 		free_split(split);
@@ -65,12 +65,13 @@ void	free_split(char **split)
 	}
 }
 
-int	error_return(t_nb *stack, char **split)
+int	error_return(t_stk *a, char **split)
 {
 	int	i;
 
-	if (stack)
-		free(stack);
+	if (a->stack)
+		free(a->stack);
+	a->stack = NULL;
 	i = 0;
 	while (split[i])
 		free(split[++i]);

@@ -6,7 +6,7 @@
 /*   By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 13:44:02 by sumsong           #+#    #+#             */
-/*   Updated: 2022/07/04 19:20:22 by sumsong          ###   ########.fr       */
+/*   Updated: 2022/07/05 00:59:34 by sumsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,23 @@ void	pivoting_a(t_stk *a, t_stk *b, int cnt)
 		--cnt;
 	}
 	// print_stack(*a, *b);
-	i = ra;
 	if (len_cpy - pb != ra)
-		while (i--)
-			reverse_rotate_stack(*a, a->len);
+	{
+		// ft_printf("len%d - (ra+pb)%d = %d vs ra%d\n\n", len_cpy, ra+pb, len_cpy-ra-pb, ra);
+		if (len_cpy - (ra + pb) > ra)
+		{
+			i = ra;
+			while (i--)
+				reverse_rotate_stack(*a, a->len);
+		}
+		else
+		{
+			i = len_cpy - (ra + pb);
+			while (i--)
+				rotate_stack(*a, a->len);
+		}
+	}
+	// print_stack(*a, *b);
 	// ft_printf("---- call a to b ----\n\n");
 	pivoting_a(a, b, ra);
 	// ft_printf("---- call b to a ----\n\n");
@@ -103,8 +116,21 @@ void	pivoting_b(t_stk *a, t_stk *b, int cnt)
 	// print_stack(*a, *b);
 	i = rb;
 	if (len_cpy - pa != rb)
-		while (i--)
-			reverse_rotate_stack(*b, b->len);
+	{
+		// ft_printf("len%d - (rb+pa)%d = %d vs rb%d\n\n", len_cpy, rb+pa, len_cpy-rb-pa, rb);
+		if (len_cpy - (rb + pa) > rb)
+		{
+			i = rb;
+			while (i--)
+				reverse_rotate_stack(*b, b->len);
+		}
+		else
+		{
+			i = len_cpy - (rb + pa);
+			while (i--)
+				rotate_stack(*b, b->len);
+		}
+	}
 	// print_stack(*a, *b);
 	// ft_printf("---- call a to b ----\n\n");
 	pivoting_a(a, b, pa);
