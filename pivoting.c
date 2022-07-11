@@ -6,7 +6,7 @@
 /*   By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 13:44:02 by sumsong           #+#    #+#             */
-/*   Updated: 2022/07/05 00:59:34 by sumsong          ###   ########.fr       */
+/*   Updated: 2022/07/11 14:21:26 by sumsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,9 @@ void	pivoting_a(t_stk *a, t_stk *b, int cnt)
 		return ;
 	}
 	len_cpy = a->len;
-	pivot = a->stack[(a->len) - 1].n;
-	// ft_printf("---- pivot : %d\n\n", pivot);
+	// pivot = a->stack[(a->len) - 1].n;
+	pivot = pivoting(*a);
+	ft_printf("---- pivot : %d\n\n", pivot);
 	i = a->len - 1;
 	++new;
 	ra = 0;
@@ -91,8 +92,9 @@ void	pivoting_b(t_stk *a, t_stk *b, int cnt)
 		return ;
 	}
 	len_cpy = b->len;
-	pivot = b->stack[(b->len) - cnt].n;
-	// ft_printf("---- pivot : %d\n\n", pivot);
+	// pivot = b->stack[(b->len) - cnt].n;
+	pivot = pivoting(*b);
+	ft_printf("---- pivot : %d\n\n", pivot);
 	i = b->len - 1;
 	++new;
 	pa = 0;
@@ -235,4 +237,22 @@ int	sort_two_in_b(t_stk *b, int len)
 		swap_stack(b, b->len);
 		return (1);
 	}
+}
+
+int	pivoting(t_stk stk)
+{
+	int	sum;
+	int	i;
+	int	cnt;
+
+	i = 0;
+	sum = 0;
+	cnt = stk.len;
+	while (stk.len)
+	{
+		sum += stk.stack[i].n;
+		--(stk.len);
+		++i;
+	}
+	return (sum / cnt);
 }

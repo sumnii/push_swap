@@ -6,30 +6,24 @@
 /*   By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 00:00:41 by sumsong           #+#    #+#             */
-/*   Updated: 2022/07/06 16:32:55 by sumsong          ###   ########.fr       */
+/*   Updated: 2022/07/11 15:15:01 by sumsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	count_args(int argc, char **argv)
+int	arg_check(char **split, int i, int j, t_stk a)
 {
-	static int	i = 0;
-	int			j;
-	static int	cnt = 0;
-	char		**res;
-
-	while (++i < argc)
-	{
-		j = -1;
-		res = ft_split(argv[i], ' ');
-		if (!res)
-			return (0);
-		while (res[++j])
-			++cnt;
-		free_split(res);
-	}
-	return (cnt);
+	if (!int_range_check(split[i]))
+		return (0);
+	else if (!dup_check(a.stack, a.len, j))
+		return (0);
+	else if (!atoi_error_check(split[i], a.stack[j]))
+		return (0);
+	else if (!sort_check(a.stack, j, a.len))
+		return (0);
+	else
+		return (1);
 }
 
 int	int_range_check(char *str)
@@ -62,4 +56,18 @@ int	dup_check(t_nb *stack, int s_len, int idx)
 		--i;
 	}
 	return (1);
+}
+
+int	sort_check(t_nb *stack, int j, int len)
+{
+	static int	flag = 0;
+
+	if (j == len - 1)
+		return (1);
+	if (stack[j].n < stack[j + 1].n)
+		flag = 1;
+	if (j == 0)
+		return (flag);
+	else
+		return (1);
 }

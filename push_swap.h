@@ -6,7 +6,7 @@
 /*   By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 23:30:27 by sumsong           #+#    #+#             */
-/*   Updated: 2022/07/06 16:31:32 by sumsong          ###   ########.fr       */
+/*   Updated: 2022/07/11 15:05:08 by sumsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,13 @@ typedef struct s_stk {
 t_stk	*struct_init(void);
 void	ft_exit(t_stk *stack_a, t_stk *stack_b, int flag);
 
-int		count_args(int argc, char **argv);
+int		arg_check(char **split, int i, int j, t_stk a);
 int		int_range_check(char *str);
 int		atoi_error_check(char *str, t_nb nb);
 int		dup_check(t_nb *stack, int s_len, int idx);
+int		sort_check(t_nb *stack, int j, int len);
 
+int		count_args(int argc, char **argv);
 int		make_stack_a(t_stk *stack_a, int argc, char **argv);
 int		make_stack_b(t_stk *stack_b, int len);
 void	free_split(char **split);
@@ -51,6 +53,7 @@ void	pivoting_a(t_stk *a, t_stk *b, int cnt);
 void	pivoting_b(t_stk *a, t_stk *b, int cnt);
 void	hard_sort_in_a(t_stk *a, int len, int cnt);
 void	hard_sort_in_b(t_stk *a, t_stk *b, int len, int cnt);
+int		pivoting(t_stk a);
 
 int		sort_three_in_a(t_stk *a, int len);
 int		sort_two_in_a(t_stk *a, int len);

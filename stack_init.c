@@ -6,11 +6,31 @@
 /*   By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 14:52:50 by sumsong           #+#    #+#             */
-/*   Updated: 2022/07/06 16:32:48 by sumsong          ###   ########.fr       */
+/*   Updated: 2022/07/11 15:15:10 by sumsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	count_args(int argc, char **argv)
+{
+	static int	i = 0;
+	int			j;
+	static int	cnt = 0;
+	char		**res;
+
+	while (++i < argc)
+	{
+		j = -1;
+		res = ft_split(argv[i], ' ');
+		if (!res)
+			return (0);
+		while (res[++j])
+			++cnt;
+		free_split(res);
+	}
+	return (cnt);
+}
 
 int	make_stack_a(t_stk *a, int argc, char **argv)
 {
@@ -30,8 +50,7 @@ int	make_stack_a(t_stk *a, int argc, char **argv)
 		while (split[++i])
 		{
 			a->stack[j].n = ft_atoi(split[i]);
-			if (!int_range_check(split[i]) || !dup_check(a->stack, a->len, j)
-				|| !atoi_error_check(split[i], a->stack[j]))
+			if (!arg_check(split, i, j, *a))
 				return (error_return(a, split));
 			--j;
 		}
