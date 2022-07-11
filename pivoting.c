@@ -6,15 +6,15 @@
 /*   By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 13:44:02 by sumsong           #+#    #+#             */
-/*   Updated: 2022/07/11 16:18:22 by sumsong          ###   ########.fr       */
+/*   Updated: 2022/07/11 20:26:34 by sumsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	pivoting_a(t_stk *a, t_stk *b, int cnt)
+void	a_to_b(t_stk *a, t_stk *b, int cnt)
 {
-	int			pivot;
+	t_pivot		pv;
 	int			i;
 	int			pb;
 	int			ra;
@@ -30,7 +30,7 @@ void	pivoting_a(t_stk *a, t_stk *b, int cnt)
 	}
 	len_cpy = a->len;
 	// pivot = a->stack[(a->len) - 1].n;
-	pivot = pivoting(a, cnt);
+	pivoting(a, cnt, &pv);
 	// ft_printf("---- pivot : %d\n\n", pivot);
 	i = a->len - 1;
 	++new;
@@ -70,14 +70,14 @@ void	pivoting_a(t_stk *a, t_stk *b, int cnt)
 	}
 	// print_stack(*a, *b);
 	// ft_printf("---- call a to b ----\n\n");
-	pivoting_a(a, b, ra);
+	a_to_b(a, b, ra);
 	// ft_printf("---- call b to a ----\n\n");
-	pivoting_b(a, b, pb);
+	b_to_a(a, b, pb);
 }
 
-void	pivoting_b(t_stk *a, t_stk *b, int cnt)
+void	b_to_a(t_stk *a, t_stk *b, int cnt)
 {
-	int			pivot;
+	t_pivot		pv;
 	int			i;
 	int			pa;
 	int			rb;
@@ -93,7 +93,7 @@ void	pivoting_b(t_stk *a, t_stk *b, int cnt)
 	}
 	len_cpy = b->len;
 	// pivot = b->stack[(b->len) - cnt].n;
-	pivot = pivoting(b, cnt);
+	pivoting(b, cnt, &pv);
 	// ft_printf("---- pivot : %d\n\n", pivot);
 	i = b->len - 1;
 	++new;
@@ -135,9 +135,9 @@ void	pivoting_b(t_stk *a, t_stk *b, int cnt)
 	}
 	// print_stack(*a, *b);
 	// ft_printf("---- call a to b ----\n\n");
-	pivoting_a(a, b, pa);
+	a_to_b(a, b, pa);
 	// ft_printf("---- call b to a ----\n\n");
-	pivoting_b(a, b, rb);
+	b_to_a(a, b, rb);
 }
 
 void	hard_sort_in_a(t_stk *a, int len, int cnt)
@@ -239,7 +239,7 @@ int	sort_two_in_b(t_stk *b, int len)
 	}
 }
 
-int	pivoting(t_stk *stk, int set_len)
+void	pivoting(t_stk *stk, int set_len, t_pivot *pv)
 {
 	int	i;
 	int	j;
@@ -260,8 +260,9 @@ int	pivoting(t_stk *stk, int set_len)
 	i = stk->len;
 	while (--i >= (stk->len - set_len))
 	{
-		if (stk->stack[i].flag == (set_len / 2))
-			return (stk->stack[i].n);
+		if (stk->stack[i].flag == (set_len / 3))
+			pv->s = stk->stack[i].n;
+		else if (stk->stack[i].flag == (set_len / 3 * 2))
+			pv->l = stk->stack[i].n;
 	}
-	return (1);
 }

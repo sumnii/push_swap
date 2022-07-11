@@ -6,7 +6,7 @@
 /*   By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 23:30:27 by sumsong           #+#    #+#             */
-/*   Updated: 2022/07/11 16:04:49 by sumsong          ###   ########.fr       */
+/*   Updated: 2022/07/11 20:25:27 by sumsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,11 @@ typedef struct s_stk {
 	int		len;
 	char	name;
 }				t_stk;
+
+typedef struct s_pivot {
+	int	s;
+	int	l;
+}				t_pivot;
 
 t_stk	*struct_init(void);
 void	ft_exit(t_stk *stack_a, t_stk *stack_b, int flag);
@@ -53,7 +58,7 @@ void	pivoting_a(t_stk *a, t_stk *b, int cnt);
 void	pivoting_b(t_stk *a, t_stk *b, int cnt);
 void	hard_sort_in_a(t_stk *a, int len, int cnt);
 void	hard_sort_in_b(t_stk *a, t_stk *b, int len, int cnt);
-int		pivoting(t_stk *stk, int set_len);
+void	pivoting(t_stk *stk, int set_len, t_pivot *pv);
 
 int		sort_three_in_a(t_stk *a, int len);
 int		sort_two_in_a(t_stk *a, int len);
