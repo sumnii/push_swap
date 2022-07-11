@@ -6,7 +6,7 @@
 /*   By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 23:30:27 by sumsong           #+#    #+#             */
-/*   Updated: 2022/07/11 20:25:27 by sumsong          ###   ########.fr       */
+/*   Updated: 2022/07/11 20:49:39 by sumsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,13 @@ typedef struct s_nb {
 	int	n;
 	int	flag;
 }				t_nb;
+
+typedef struct s_opr {
+	int	pa;
+	int	pb;
+	int	ra;
+	int	rb;
+}				t_opr;
 
 typedef struct s_stk {
 	t_nb	*stack;
@@ -50,12 +57,12 @@ int		error_return(t_stk *a, char **split);
 void	swap_stack(t_stk *stack, int len);
 void	push_stack(t_stk *stack_f, t_stk *stack_t);
 void	rotate_stack(t_stk stack, int len);
-void	reverse_rotate_stack(t_stk stack, int len);
+void	reverse_rotate_stack(t_stk *a, int a_len, t_stk *b, int b_len);
 
 void	swap_a_b(int *a, int *b);
 
-void	pivoting_a(t_stk *a, t_stk *b, int cnt);
-void	pivoting_b(t_stk *a, t_stk *b, int cnt);
+void	a_to_b(t_stk *a, t_stk *b, int cnt);
+void	b_to_a(t_stk *a, t_stk *b, int cnt);
 void	hard_sort_in_a(t_stk *a, int len, int cnt);
 void	hard_sort_in_b(t_stk *a, t_stk *b, int len, int cnt);
 void	pivoting(t_stk *stk, int set_len, t_pivot *pv);

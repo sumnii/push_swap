@@ -6,7 +6,7 @@
 /*   By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 00:33:25 by sumsong           #+#    #+#             */
-/*   Updated: 2022/07/04 19:06:56 by sumsong          ###   ########.fr       */
+/*   Updated: 2022/07/11 20:44:29 by sumsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,16 +45,28 @@ void	rotate_stack(t_stk stack, int len)
 	}
 }
 
-void	reverse_rotate_stack(t_stk stack, int len)
+void	reverse_rotate_stack(t_stk *a, int a_len, t_stk *b, int b_len)
 {
 	int	i;
 
+	if (a && b)
+		ft_printf("rrr\n");
+	else if (a && !b)
+		ft_printf("rra\n");
+	else if (!a && b)
+		ft_printf("rrb\n");
 	i = 0;
-	ft_printf("rr%c\n", stack.name);
-	while (i + 1 < len)
+	while (a && i + 1 < a_len)
 	{
-		swap_a_b(&(stack.stack[i].n), &(stack.stack[i + 1].n));
-		swap_a_b(&(stack.stack[i].flag), &(stack.stack[i + 1].flag));
+		swap_a_b(&(a->stack[i].n), &(a->stack[i + 1].n));
+		swap_a_b(&(a->stack[i].flag), &(a->stack[i + 1].flag));
+		++i;
+	}
+	i = 0;
+	while (b && i + 1 < b_len)
+	{
+		swap_a_b(&(b->stack[i].n), &(b->stack[i + 1].n));
+		swap_a_b(&(b->stack[i].flag), &(b->stack[i + 1].flag));
 		++i;
 	}
 }
