@@ -6,7 +6,7 @@
 /*   By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 13:44:02 by sumsong           #+#    #+#             */
-/*   Updated: 2022/07/11 14:21:26 by sumsong          ###   ########.fr       */
+/*   Updated: 2022/07/11 16:18:22 by sumsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void	pivoting_a(t_stk *a, t_stk *b, int cnt)
 	}
 	len_cpy = a->len;
 	// pivot = a->stack[(a->len) - 1].n;
-	pivot = pivoting(*a);
-	ft_printf("---- pivot : %d\n\n", pivot);
+	pivot = pivoting(a, cnt);
+	// ft_printf("---- pivot : %d\n\n", pivot);
 	i = a->len - 1;
 	++new;
 	ra = 0;
@@ -93,8 +93,8 @@ void	pivoting_b(t_stk *a, t_stk *b, int cnt)
 	}
 	len_cpy = b->len;
 	// pivot = b->stack[(b->len) - cnt].n;
-	pivot = pivoting(*b);
-	ft_printf("---- pivot : %d\n\n", pivot);
+	pivot = pivoting(b, cnt);
+	// ft_printf("---- pivot : %d\n\n", pivot);
 	i = b->len - 1;
 	++new;
 	pa = 0;
@@ -239,20 +239,29 @@ int	sort_two_in_b(t_stk *b, int len)
 	}
 }
 
-int	pivoting(t_stk stk)
+int	pivoting(t_stk *stk, int set_len)
 {
-	int	sum;
 	int	i;
+	int	j;
 	int	cnt;
 
-	i = 0;
-	sum = 0;
-	cnt = stk.len;
-	while (stk.len)
+	i = stk->len;
+	// ft_printf("len : %d, set_len : %d\n", stk->len, set_len);
+	while (--i >= (stk->len - set_len))
 	{
-		sum += stk.stack[i].n;
-		--(stk.len);
-		++i;
+		cnt = 0;
+		j = stk->len;
+		while (--j >= (stk->len - set_len))
+			if (stk->stack[i].n > stk->stack[j].n)
+				++cnt;
+		stk->stack[i].flag = cnt;
+		// ft_printf("stack[%d].%d : %d\n", i, stk->stack[i].n, cnt);
 	}
-	return (sum / cnt);
+	i = stk->len;
+	while (--i >= (stk->len - set_len))
+	{
+		if (stk->stack[i].flag == (set_len / 2))
+			return (stk->stack[i].n);
+	}
+	return (1);
 }
