@@ -6,13 +6,13 @@
 /*   By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 23:48:12 by sumsong           #+#    #+#             */
-/*   Updated: 2022/07/13 00:03:17 by sumsong          ###   ########.fr       */
+/*   Updated: 2022/07/13 00:20:51 by sumsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	sort_three_in_arg(t_stk *a, int len)
+void	sort_3_arg(t_stk *a, int len)
 {
 	int	first;
 	int	second;
@@ -37,5 +37,25 @@ int	sort_three_in_arg(t_stk *a, int len)
 		swap_stack(a, len);
 		reverse_rotate_stack(a, len, NULL, 0);
 	}
-	return (1);
+}
+
+void	sort_5_arg(t_stk *a, t_stk *b, int len)
+{
+	t_pivot	pv;
+	int		i;
+
+	pivoting(a, 5, &pv);
+	i = len - 1;
+	while (len--)
+	{
+		if (a->stack[i].n < pv.l)
+		{
+			push_stack(a, b);
+			--i;
+		}
+		else
+			rotate_stack(*a, a->len);
+	}
+	sort_3_arg(a, a->len);
+	hard_sort_in_b(a, b, b->len, 2);
 }

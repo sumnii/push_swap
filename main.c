@@ -6,7 +6,7 @@
 /*   By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 17:05:52 by sumsong           #+#    #+#             */
-/*   Updated: 2022/07/12 23:55:39 by sumsong          ###   ########.fr       */
+/*   Updated: 2022/07/13 00:13:15 by sumsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,10 @@ int	main(int argc, char **argv)
 		ft_exit(a, b, 1);
 	b->len = 0;
 	if (a->len == 3)
-		sort_three_in_arg(a, a->len);
-	// if (a->len != 3 && a->len != 5)
+		sort_3_arg(a, a->len);
+	else if (a->len == 5)
+		sort_5_arg(a, b, a->len);
+	else
 		a_to_b(a, b, a->len);
 	// print_stack(*a, *b);
 	ft_exit(a, b, 0);
