@@ -6,7 +6,7 @@
 #    By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/25 23:33:09 by sumsong           #+#    #+#              #
-#    Updated: 2022/07/12 21:11:05 by sumsong          ###   ########.fr        #
+#    Updated: 2022/07/12 23:53:11 by sumsong          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ SRC				=	main.c arg_check.c stack_init.c \
 					operator.c operator_utils.c \
 					sorting.c hard_sort_in_a.c hard_sort_in_b.c \
 					a3_hard_sort.c b3_hard_sort.c \
+					3_arg_sort.c \
 					testing.c
 
 SRCS			=	$(addprefix $(SRC_DIR), $(SRC))

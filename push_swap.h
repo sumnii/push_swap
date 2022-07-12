@@ -6,7 +6,7 @@
 /*   By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 23:30:27 by sumsong           #+#    #+#             */
-/*   Updated: 2022/07/12 23:28:49 by sumsong          ###   ########.fr       */
+/*   Updated: 2022/07/12 23:52:50 by sumsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,8 @@ void	b_sort_1_3_2(t_stk *a, t_stk *b);
 void	b_sort_2_1_3(t_stk *a, t_stk *b);
 void	b_sort_2_3_1(t_stk *a, t_stk *b);
 void	b_sort_3_1_2(t_stk *a, t_stk *b);
+
+int		sort_three_in_arg(t_stk *a, int len);
 
 void	print_stack(t_stk a, t_stk b); // for testing func
 void	test_operator(t_stk a, t_stk b); // for testing func
