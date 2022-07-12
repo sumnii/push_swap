@@ -6,7 +6,7 @@
 /*   By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 23:30:27 by sumsong           #+#    #+#             */
-/*   Updated: 2022/07/11 20:49:39 by sumsong          ###   ########.fr       */
+/*   Updated: 2022/07/12 23:28:49 by sumsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,13 +63,15 @@ void	swap_a_b(int *a, int *b);
 
 void	a_to_b(t_stk *a, t_stk *b, int cnt);
 void	b_to_a(t_stk *a, t_stk *b, int cnt);
-void	hard_sort_in_a(t_stk *a, int len, int cnt);
-void	hard_sort_in_b(t_stk *a, t_stk *b, int len, int cnt);
 void	pivoting(t_stk *stk, int set_len, t_pivot *pv);
+int		a_is_sorted(t_stk *a, int cnt);
 
+void	hard_sort_in_a(t_stk *a, int len, int cnt);
 int		sort_three_in_a(t_stk *a, int len);
 int		sort_two_in_a(t_stk *a, int len);
-int		sort_three_in_b(t_stk *b, int len);
+
+void	hard_sort_in_b(t_stk *a, t_stk *b, int len, int cnt);
+int		sort_three_in_b(t_stk *a, t_stk *b, int len);
 int		sort_two_in_b(t_stk *b, int len);
 
 void	a_sort_1_3_2(t_stk *a);
@@ -78,11 +80,11 @@ void	a_sort_2_3_1(t_stk *a);
 void	a_sort_3_1_2(t_stk *a);
 void	a_sort_3_2_1(t_stk *a);
 
-void	b_sort_1_2_3(t_stk *b);
-void	b_sort_1_3_2(t_stk *b);
-void	b_sort_2_1_3(t_stk *b);
-void	b_sort_2_3_1(t_stk *b);
-void	b_sort_3_1_2(t_stk *b);
+void	b_sort_1_2_3(t_stk *a, t_stk *b);
+void	b_sort_1_3_2(t_stk *a, t_stk *b);
+void	b_sort_2_1_3(t_stk *a, t_stk *b);
+void	b_sort_2_3_1(t_stk *a, t_stk *b);
+void	b_sort_3_1_2(t_stk *a, t_stk *b);
 
 void	print_stack(t_stk a, t_stk b); // for testing func
 void	test_operator(t_stk a, t_stk b); // for testing func

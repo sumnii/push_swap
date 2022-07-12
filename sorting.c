@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pivoting.c                                         :+:      :+:    :+:   */
+/*   sorting.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 13:44:02 by sumsong           #+#    #+#             */
-/*   Updated: 2022/07/12 20:59:00 by sumsong          ###   ########.fr       */
+/*   Updated: 2022/07/12 23:17:23 by sumsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,40 +31,43 @@ void	a_to_b(t_stk *a, t_stk *b, int cnt)
 	opr.ra = 0;
 	opr.pb = 0;
 	opr.rb = 0;
-	while (cnt-- && --i)
+	if (!(a_is_sorted(a, cnt)))
 	{
-		// ft_printf("[%d] :     %d vs sp%d vs lp%d\n", i, a->stack[i].n, pv.s, pv.l);
-		if (a->stack[i].n < pv.s && ++opr.pb)
-			push_stack(a, b);
-		else if (pv.s <= a->stack[i].n && a->stack[i].n <= pv.l && ++opr.pb && ++opr.rb)
+		while (cnt-- && --i)
 		{
-			push_stack(a, b);
-			rotate_stack(*b, b->len);
+			// ft_printf("[%d] :     %d vs sp%d vs lp%d\n", i, a->stack[i].n, pv.s, pv.l);
+			if (a->stack[i].n <= pv.s && ++opr.pb)
+				push_stack(a, b);
+			else if (pv.s < a->stack[i].n && a->stack[i].n <= pv.l && ++opr.pb && ++opr.rb)
+			{
+				push_stack(a, b);
+				rotate_stack(*b, b->len);
+			}
+			else if (pv.l < a->stack[i].n && ++opr.ra && ++i)
+				rotate_stack(*a, a->len);
+			// print_stack(*a, *b);
 		}
-		else if (pv.l < a->stack[i].n && ++opr.ra && ++i)
-			rotate_stack(*a, a->len);
 		// print_stack(*a, *b);
+		if (opr.ra > opr.rb)
+		{
+			i = opr.rb;
+			while (i-- > 0)
+				reverse_rotate_stack(a, a->len, b, b->len);
+			i = opr.ra - opr.rb;
+			while (i-- > 0)
+				reverse_rotate_stack(a, a->len, NULL, 0);
+		}
+		else if (opr.ra <= opr.rb)
+		{
+			i = opr.ra;
+			while (i-- > 0)
+				reverse_rotate_stack(a, a->len, b, b->len);
+			i = opr.rb - opr.ra;
+			while (i-- > 0)
+				reverse_rotate_stack(NULL, 0, b, b->len);
+		}
 	}
-	print_stack(*a, *b);
-	if (opr.ra > opr.rb)
-	{
-		i = opr.rb;
-		while (i-- > 0)
-			reverse_rotate_stack(a, a->len, b, b->len);
-		i = opr.ra - opr.rb;
-		while (i-- > 0)
-			reverse_rotate_stack(a, a->len, NULL, 0);
-	}
-	else if (opr.ra <= opr.rb)
-	{
-		i = opr.ra;
-		while (i-- > 0)
-			reverse_rotate_stack(a, a->len, b, b->len);
-		i = opr.rb - opr.ra;
-		while (i-- > 0)
-			reverse_rotate_stack(NULL, 0, b, b->len);
-	}
-	print_stack(*a, *b);
+	// print_stack(*a, *b);
 	// ft_printf("---- call a to b : ra %d ----\n\n", opr.ra);
 	a_to_b(a, b, opr.ra);
 	// ft_printf("---- call b to a : rb %d ----\n\n", opr.rb);
@@ -81,7 +84,6 @@ void	b_to_a(t_stk *a, t_stk *b, int cnt)
 	// ft_printf("---- cnt : %d\n\n", cnt);
 	if (cnt <= 3)
 	{
-		// ft_printf("b cnt <= 3! hard coding!\n");
 		hard_sort_in_b(a, b, b->len, cnt);
 		// print_stack(*a, *b);
 		return ;
@@ -94,9 +96,9 @@ void	b_to_a(t_stk *a, t_stk *b, int cnt)
 	opr.ra = 0;
 	while (cnt-- && --i)
 	{
-		if (pv.l < b->stack[i].n && ++opr.pa)
+		if (pv.l <= b->stack[i].n && ++opr.pa)
 			push_stack(b, a);
-		else if (pv.s <= b->stack[i].n && b->stack[i].n <= pv.l && ++opr.pa && ++opr.ra)
+		else if (pv.s <= b->stack[i].n && b->stack[i].n < pv.l && ++opr.pa && ++opr.ra)
 		{
 			push_stack(b, a);
 			rotate_stack(*a, a->len);
@@ -108,7 +110,7 @@ void	b_to_a(t_stk *a, t_stk *b, int cnt)
 		// print_stack(*a, *b);
 	}
 	a_to_b(a, b, opr.pa - opr.ra);
-	print_stack(*a, *b);
+	// print_stack(*a, *b);
 	if (opr.ra > opr.rb)
 	{
 		i = opr.rb;
@@ -127,111 +129,11 @@ void	b_to_a(t_stk *a, t_stk *b, int cnt)
 		while (i-- > 0)
 			reverse_rotate_stack(NULL, 0, b, b->len);
 	}
-	print_stack(*a, *b);
+	// print_stack(*a, *b);
 	// ft_printf("---- call a to b : ra%d ----\n\n", opr.ra);
 	a_to_b(a, b, opr.ra);
 	// ft_printf("---- call b to a : rb%d ----\n\n", opr.rb);
 	b_to_a(a, b, opr.rb);
-}
-
-void	hard_sort_in_a(t_stk *a, int len, int cnt)
-{
-	// ft_printf("--- hard sort A! cnt %d\n\n", cnt);
-	if (cnt == 2)
-		sort_two_in_a(a, len);
-	else if (cnt == 3)
-		sort_three_in_a(a, len);
-}
-
-void	hard_sort_in_b(t_stk *a, t_stk *b, int len, int cnt)
-{
-	// ft_printf("--- hard sort B! cnt %d\n\n", cnt);
-	if (cnt == 0)
-		return ;
-	else if (cnt == 2)
-	{
-		sort_two_in_b(b, len);
-		push_stack(b, a);
-	}
-	else if (cnt == 3)
-	{
-		sort_three_in_b(b, len);
-		// print_stack(*a, *b);
-		push_stack(b, a);
-		push_stack(b, a);
-	}
-	push_stack(b, a);
-}
-
-int	sort_three_in_a(t_stk *a, int len)
-{
-	int	first;
-	int	second;
-	int	third;
-
-	first = a->stack[len - 1].n;
-	second = a->stack[len - 2].n;
-	third = a->stack[len - 3].n;
-	if (first < third && third < second)
-		a_sort_1_3_2(a);
-	else if (second < first && first < third)
-		a_sort_2_1_3(a);
-	else if (third < first && first < second)
-		a_sort_2_3_1(a);
-	else if (second < third && third < first)
-		a_sort_3_1_2(a);
-	else if (third < second && second < first)
-		a_sort_3_2_1(a);
-	return (1);
-}
-
-int	sort_two_in_a(t_stk *a, int len)
-{
-	int	first;
-	int	second;
-
-	first = a->stack[len - 1].n;
-	second = a->stack[len - 2].n;
-	if (first < second)
-		return (1);
-	else
-	{
-		swap_stack(a, a->len);
-		return (1);
-	}
-}
-
-int	sort_three_in_b(t_stk *b, int len)
-{
-	int	first;
-	int	second;
-	int	third;
-
-	first = b->stack[len - 1].n;
-	second = b->stack[len - 2].n;
-	third = b->stack[len - 3].n;
-	if (first < second && second < third)
-		b_sort_1_2_3(b);
-	else if (first < third && third < second)
-		b_sort_1_3_2(b);
-	else if (second < first && first < third)
-		b_sort_2_1_3(b);
-	else if (third < first && first < second)
-		b_sort_2_3_1(b);
-	else if (second < third && third < first)
-		b_sort_3_1_2(b);
-	return (1);
-}
-
-int	sort_two_in_b(t_stk *b, int len)
-{
-	if (b->stack[len - 1].n > b->stack[len - 2].n)
-		return (1);
-	else
-	{
-		swap_stack(b, b->len);
-		return (1);
-	}
 }
 
 void	pivoting(t_stk *stk, int set_len, t_pivot *pv)
@@ -260,4 +162,26 @@ void	pivoting(t_stk *stk, int set_len, t_pivot *pv)
 		else if (stk->stack[i].flag == (set_len / 3 * 2))
 			pv->l = stk->stack[i].n;
 	}
+}
+
+int	a_is_sorted(t_stk *a, int cnt)
+{
+	int	i;
+
+	i = a->len - 1;
+	// ft_printf("i : %d, cnt : %d\n", i, cnt);
+	while (cnt > 0)
+	{
+		// ft_printf("a[%d] : %d, a[%d] : %d\n", i, a->stack[i].n, i-1, a->stack[i - 1].n);
+		if (a->stack[i].n < a->stack[i - 1].n)
+			--i;
+		else
+		{
+			// ft_printf("it's not sorted.\n");
+			return (0);
+		}
+		--cnt;
+	}
+	// ft_printf("\n--- it's sorted.\n");
+	return (1);
 }
