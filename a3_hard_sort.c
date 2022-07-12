@@ -6,7 +6,7 @@
 /*   By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 15:53:38 by sumsong           #+#    #+#             */
-/*   Updated: 2022/07/04 19:05:12 by sumsong          ###   ########.fr       */
+/*   Updated: 2022/07/11 21:31:40 by sumsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	a_sort_1_3_2(t_stk *a)
 {
 	rotate_stack(*a, a->len);
 	swap_stack(a, a->len);
-	reverse_rotate_stack(*a, a->len);
+	reverse_rotate_stack(a, a->len, NULL, 0);
 }
 
 void	a_sort_2_1_3(t_stk *a)
@@ -28,7 +28,7 @@ void	a_sort_2_3_1(t_stk *a)
 {
 	rotate_stack(*a, a->len);
 	swap_stack(a, a->len);
-	reverse_rotate_stack(*a, a->len);
+	reverse_rotate_stack(a, a->len, NULL, 0);
 	swap_stack(a, a->len);
 }
 

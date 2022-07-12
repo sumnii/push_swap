@@ -6,7 +6,7 @@
 /*   By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 13:44:02 by sumsong           #+#    #+#             */
-/*   Updated: 2022/07/11 21:06:57 by sumsong          ###   ########.fr       */
+/*   Updated: 2022/07/12 20:59:00 by sumsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	a_to_b(t_stk *a, t_stk *b, int cnt)
 	t_pivot		pv;
 	t_opr		opr;
 	int			i;
-
+	
 	// ft_printf("---- cnt : %d\n\n", cnt);
 	if (cnt <= 3)
 	{
@@ -26,15 +26,15 @@ void	a_to_b(t_stk *a, t_stk *b, int cnt)
 		return ;
 	}
 	pivoting(a, cnt, &pv);
-	ft_printf("---- sp : %d, lp : %d\n\n", pv.s, pv.l);
+	// ft_printf("---- sp : %d, lp : %d\n\n", pv.s, pv.l);
 	i = a->len;
 	opr.ra = 0;
 	opr.pb = 0;
 	opr.rb = 0;
 	while (cnt-- && --i)
 	{
-		ft_printf("[%d] :     %d vs sp%d vs lp%d\n", i, a->stack[i].n, pv.s, pv.l);
-		if (a->stack[i].n < pv.s && ++opr.rb)
+		// ft_printf("[%d] :     %d vs sp%d vs lp%d\n", i, a->stack[i].n, pv.s, pv.l);
+		if (a->stack[i].n < pv.s && ++opr.pb)
 			push_stack(a, b);
 		else if (pv.s <= a->stack[i].n && a->stack[i].n <= pv.l && ++opr.pb && ++opr.rb)
 		{
@@ -43,97 +43,95 @@ void	a_to_b(t_stk *a, t_stk *b, int cnt)
 		}
 		else if (pv.l < a->stack[i].n && ++opr.ra && ++i)
 			rotate_stack(*a, a->len);
-		print_stack(*a, *b);
+		// print_stack(*a, *b);
 	}
 	print_stack(*a, *b);
 	if (opr.ra > opr.rb)
 	{
 		i = opr.rb;
-		while (i--)
+		while (i-- > 0)
 			reverse_rotate_stack(a, a->len, b, b->len);
 		i = opr.ra - opr.rb;
-		while (i--)
+		while (i-- > 0)
 			reverse_rotate_stack(a, a->len, NULL, 0);
 	}
 	else if (opr.ra <= opr.rb)
 	{
 		i = opr.ra;
-		while (i--)
+		while (i-- > 0)
 			reverse_rotate_stack(a, a->len, b, b->len);
 		i = opr.rb - opr.ra;
-		while (i--)
+		while (i-- > 0)
 			reverse_rotate_stack(NULL, 0, b, b->len);
 	}
 	print_stack(*a, *b);
-	// ft_printf("---- call a to b ----\n\n");
-	// a_to_b(a, b, opr.ra);
-	// ft_printf("---- call b to a ----\n\n");
-	// b_to_a(a, b, opr.rb);
-	// b_to_a(a, b, opr.rb - opr.rb);
+	// ft_printf("---- call a to b : ra %d ----\n\n", opr.ra);
+	a_to_b(a, b, opr.ra);
+	// ft_printf("---- call b to a : rb %d ----\n\n", opr.rb);
+	b_to_a(a, b, opr.rb);
+	b_to_a(a, b, opr.pb - opr.rb);
 }
 
 void	b_to_a(t_stk *a, t_stk *b, int cnt)
 {
 	t_pivot		pv;
+	t_opr		opr;
 	int			i;
-	int			pa;
-	int			rb;
-	static int	new = 0;
-	int			len_cpy;
 
 	// ft_printf("---- cnt : %d\n\n", cnt);
 	if (cnt <= 3)
 	{
+		// ft_printf("b cnt <= 3! hard coding!\n");
 		hard_sort_in_b(a, b, b->len, cnt);
 		// print_stack(*a, *b);
 		return ;
 	}
-	len_cpy = b->len;
-	// pivot = b->stack[(b->len) - cnt].n;
 	pivoting(b, cnt, &pv);
-	// ft_printf("---- pivot : %d\n\n", pivot);
-	i = b->len - 1;
-	++new;
-	pa = 0;
-	rb = 0;
-	while (cnt)
+	// ft_printf("---- sp : %d, lp : %d\n\n", pv.s, pv.l);
+	i = b->len;
+	opr.pa = 0;
+	opr.rb = 0;
+	opr.ra = 0;
+	while (cnt-- && --i)
 	{
-		if (b->stack[i].n >= pv.l)
+		if (pv.l < b->stack[i].n && ++opr.pa)
+			push_stack(b, a);
+		else if (pv.s <= b->stack[i].n && b->stack[i].n <= pv.l && ++opr.pa && ++opr.ra)
 		{
 			push_stack(b, a);
-			++pa;
+			rotate_stack(*a, a->len);
 		}
-		else if (b->stack[i].n < pv.s)
+		else if (b->stack[i].n < pv.s && ++opr.rb && ++i)
 		{
 			rotate_stack(*b, b->len);
-			++rb;
 		}
-		--cnt;
 		// print_stack(*a, *b);
 	}
-	// print_stack(*a, *b);
-	i = rb;
-	if (len_cpy - pa != rb)
+	a_to_b(a, b, opr.pa - opr.ra);
+	print_stack(*a, *b);
+	if (opr.ra > opr.rb)
 	{
-		// ft_printf("len%d - (rb+pa)%d = %d vs rb%d\n\n", len_cpy, rb+pa, len_cpy-rb-pa, rb);
-		if (len_cpy - (rb + pa) > rb)
-		{
-			i = rb;
-			while (i--)
-				reverse_rotate_stack(NULL, 0, b, b->len);
-		}
-		else
-		{
-			i = len_cpy - (rb + pa);
-			while (i--)
-				rotate_stack(*b, b->len);
-		}
+		i = opr.rb;
+		while (i-- > 0)
+			reverse_rotate_stack(a, a->len, b, b->len);
+		i = opr.ra - opr.rb;
+		while (i-- > 0)
+			reverse_rotate_stack(a, a->len, NULL, 0);
 	}
-	// print_stack(*a, *b);
-	// ft_printf("---- call a to b ----\n\n");
-	a_to_b(a, b, pa);
-	// ft_printf("---- call b to a ----\n\n");
-	b_to_a(a, b, rb);
+	else if (opr.ra <= opr.rb)
+	{
+		i = opr.ra;
+		while (i-- > 0)
+			reverse_rotate_stack(a, a->len, b, b->len);
+		i = opr.rb - opr.ra;
+		while (i-- > 0)
+			reverse_rotate_stack(NULL, 0, b, b->len);
+	}
+	print_stack(*a, *b);
+	// ft_printf("---- call a to b : ra%d ----\n\n", opr.ra);
+	a_to_b(a, b, opr.ra);
+	// ft_printf("---- call b to a : rb%d ----\n\n", opr.rb);
+	b_to_a(a, b, opr.rb);
 }
 
 void	hard_sort_in_a(t_stk *a, int len, int cnt)
@@ -158,6 +156,7 @@ void	hard_sort_in_b(t_stk *a, t_stk *b, int len, int cnt)
 	else if (cnt == 3)
 	{
 		sort_three_in_b(b, len);
+		// print_stack(*a, *b);
 		push_stack(b, a);
 		push_stack(b, a);
 	}
