@@ -6,11 +6,11 @@
 /*   By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 14:52:50 by sumsong           #+#    #+#             */
-/*   Updated: 2022/07/11 15:15:10 by sumsong          ###   ########.fr       */
+/*   Updated: 2022/07/13 16:45:42 by sumsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 int	count_args(int argc, char **argv)
 {

@@ -6,11 +6,11 @@
 /*   By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 00:00:41 by sumsong           #+#    #+#             */
-/*   Updated: 2022/07/11 15:15:01 by sumsong          ###   ########.fr       */
+/*   Updated: 2022/07/13 16:45:42 by sumsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 int	arg_check(char **split, int i, int j, t_stk a)
 {

@@ -6,28 +6,25 @@
 /*   By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 21:07:54 by sumsong           #+#    #+#             */
-/*   Updated: 2022/07/12 23:37:20 by sumsong          ###   ########.fr       */
+/*   Updated: 2022/07/13 16:46:43 by sumsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
-void	hard_sort_in_b(t_stk *a, t_stk *b, int len, int cnt)
+int	hard_sort_in_b(t_stk *a, t_stk *b, int len, int cnt)
 {
-	// ft_printf("--- hard sort B! cnt %d\n\n", cnt);
 	if (cnt == 0)
-		return ;
+		return (1);
 	else if (cnt == 2)
 	{
 		sort_two_in_b(b, len);
 		push_stack(b, a);
 	}
 	else if (cnt == 3)
-	{
 		sort_three_in_b(a, b, len);
-		// print_stack(*a, *b);
-	}
 	push_stack(b, a);
+	return (1);
 }
 
 int	sort_three_in_b(t_stk *a, t_stk *b, int len)

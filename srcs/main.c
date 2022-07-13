@@ -6,11 +6,11 @@
 /*   By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 17:05:52 by sumsong           #+#    #+#             */
-/*   Updated: 2022/07/13 00:13:15 by sumsong          ###   ########.fr       */
+/*   Updated: 2022/07/13 16:45:42 by sumsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 int	main(int argc, char **argv)
 {
@@ -35,7 +35,6 @@ int	main(int argc, char **argv)
 		sort_5_arg(a, b, a->len);
 	else
 		a_to_b(a, b, a->len);
-	// print_stack(*a, *b);
 	ft_exit(a, b, 0);
 }
 

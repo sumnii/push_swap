@@ -6,7 +6,7 @@
 #    By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/25 23:33:09 by sumsong           #+#    #+#              #
-#    Updated: 2022/07/12 23:53:11 by sumsong          ###   ########.fr        #
+#    Updated: 2022/07/13 17:02:19 by sumsong          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ CFLAGS			=	-Wall -Werror -Wextra
 AR				=	ar rcs
 RM				=	rm -f
 
-SRC_DIR			=	./
+SRC_DIR			=	./srcs/
 LIBFT_DIR		=	./libft/
 PRINTF_DIR		=	./ft_printf/
 
@@ -25,10 +25,9 @@ LIBFT_FLAGS		=	-L$(LIBFT_DIR) -lft
 PRINTF_FLAGS	=	-L$(PRINTF_DIR) -lftprintf
 
 SRC				=	main.c arg_check.c stack_init.c \
-					operator.c operator_utils.c \
-					sorting.c hard_sort_in_a.c hard_sort_in_b.c \
+					3_5_arg_sort.c operator.c sorting.c sorting_utils.c \
+					hard_sort_in_a.c hard_sort_in_b.c \
 					a3_hard_sort.c b3_hard_sort.c \
-					3_arg_sort.c \
 					testing.c
 
 SRCS			=	$(addprefix $(SRC_DIR), $(SRC))

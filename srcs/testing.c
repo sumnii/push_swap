@@ -6,11 +6,11 @@
 /*   By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 22:42:17 by sumsong           #+#    #+#             */
-/*   Updated: 2022/07/04 14:06:42 by sumsong          ###   ########.fr       */
+/*   Updated: 2022/07/13 16:45:42 by sumsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 // This is temporary func for checking stack status.
 void	print_stack(t_stk a, t_stk b)
 {

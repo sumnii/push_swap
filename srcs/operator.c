@@ -6,11 +6,11 @@
 /*   By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 00:33:25 by sumsong           #+#    #+#             */
-/*   Updated: 2022/07/11 21:21:42 by sumsong          ###   ########.fr       */
+/*   Updated: 2022/07/13 16:45:42 by sumsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 void	swap_stack(t_stk *stack, int len)
 {
@@ -69,4 +69,13 @@ void	reverse_rotate_stack(t_stk *a, int a_len, t_stk *b, int b_len)
 		swap_a_b(&(b->stack[i].flag), &(b->stack[i + 1].flag));
 		++i;
 	}
+}
+
+void	swap_a_b(int *a, int *b)
+{
+	int	tmp;
+
+	tmp = *a;
+	*a = *b;
+	*b = tmp;
 }
