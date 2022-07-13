@@ -6,11 +6,12 @@
 #    By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/25 23:33:09 by sumsong           #+#    #+#              #
-#    Updated: 2022/07/13 17:02:19 by sumsong          ###   ########.fr        #
+#    Updated: 2022/07/13 18:49:35 by sumsong          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			=	push_swap
+BONUS			=	mychecker
 
 CC				=	cc
 CFLAGS			=	-Wall -Werror -Wextra
@@ -20,6 +21,7 @@ RM				=	rm -f
 SRC_DIR			=	./srcs/
 LIBFT_DIR		=	./libft/
 PRINTF_DIR		=	./ft_printf/
+BONUS_DIR		=	./bonus_srcs/
 
 LIBFT_FLAGS		=	-L$(LIBFT_DIR) -lft
 PRINTF_FLAGS	=	-L$(PRINTF_DIR) -lftprintf
@@ -30,22 +32,30 @@ SRC				=	main.c arg_check.c stack_init.c \
 					a3_hard_sort.c b3_hard_sort.c \
 					testing.c
 
+BONUS_SRC		=	main.c arg_check.c stack_init.c \
+					operate_stack.c operator.c \
+					testing.c
+
 SRCS			=	$(addprefix $(SRC_DIR), $(SRC))
 OBJS			=	$(SRCS:.c=.o)
+BONUS_SRCS		=	$(addprefix $(BONUS_DIR), $(BONUS_SRC))
+BONUS_OBJS		=	$(BONUS_SRCS:.c=.o)
 
 all: $(NAME)
 
 clean:
 	make -C $(PRINTF_DIR) clean
 	make -C $(LIBFT_DIR) clean
-	$(RM) $(OBJS)
+	$(RM) $(OBJS) $(BONUS_OBJS)
 
 fclean: clean
 	make -C $(PRINTF_DIR) fclean
 	make -C $(LIBFT_DIR) fclean
-	$(RM) $(NAME)
+	$(RM) $(NAME) $(BONUS)
 
 re: clean all
+
+bonus: $(BONUS)
 
 .c.o:
 	$(CC) $(CFLAGS) -o $@ -c $?
@@ -55,4 +65,9 @@ $(NAME): $(OBJS)
 	make -C $(LIBFT_DIR)
 	$(CC) -o $@ $(LIBFT_FLAGS) $(PRINTF_FLAGS) $(OBJS)
 
-PHONY: all clean fclean re
+$(BONUS): $(BONUS_OBJS)
+	make -C $(PRINTF_DIR)
+	make -C $(LIBFT_DIR)
+	$(CC) -o $@ $(LIBFT_FLAGS) $(PRINTF_FLAGS) $(BONUS_OBJS)
+
+PHONY: all clean fclean re bonus./
