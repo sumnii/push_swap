@@ -6,11 +6,27 @@
 /*   By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 17:00:34 by sumsong           #+#    #+#             */
-/*   Updated: 2022/07/13 17:01:48 by sumsong          ###   ########.fr       */
+/*   Updated: 2022/07/13 17:03:09 by sumsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
+
+int	a_is_sorted(t_stk *a, int cnt)
+{
+	int	i;
+
+	i = a->len - 1;
+	while (cnt > 0)
+	{
+		if (a->stack[i].n < a->stack[i - 1].n)
+			--i;
+		else
+			return (0);
+		--cnt;
+	}
+	return (1);
+}
 
 void	a_to_b_dividing(t_stk *a, t_stk *b, int cnt, t_opr *opr)
 {
@@ -94,22 +110,6 @@ void	pivoting(t_stk *stk, int set_len, t_pivot *pv)
 		else if (stk->stack[i].flag == (set_len / 3 * 2))
 			pv->l = stk->stack[i].n;
 	}
-}
-
-int	a_is_sorted(t_stk *a, int cnt)
-{
-	int	i;
-
-	i = a->len - 1;
-	while (cnt > 0)
-	{
-		if (a->stack[i].n < a->stack[i - 1].n)
-			--i;
-		else
-			return (0);
-		--cnt;
-	}
-	return (1);
 }
 
 void	rrr_stack(t_stk *a, t_stk *b, t_opr opr)

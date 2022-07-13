@@ -6,7 +6,7 @@
 /*   By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 14:52:50 by sumsong           #+#    #+#             */
-/*   Updated: 2022/07/13 16:45:42 by sumsong          ###   ########.fr       */
+/*   Updated: 2022/07/13 17:58:37 by sumsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	count_args(int argc, char **argv)
 	{
 		j = -1;
 		res = ft_split(argv[i], ' ');
-		if (!res)
+		if (!res || !(*res))
 			return (0);
 		while (res[++j])
 			++cnt;

@@ -6,7 +6,7 @@
 /*   By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 17:05:52 by sumsong           #+#    #+#             */
-/*   Updated: 2022/07/13 16:45:42 by sumsong          ###   ########.fr       */
+/*   Updated: 2022/07/13 17:57:46 by sumsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ int	main(int argc, char **argv)
 	if (!a || !b)
 		ft_exit(a, b, 1);
 	a->len = count_args(argc, argv);
+	if (a->len == 0)
+		ft_exit(a, b, 1);
 	if (!make_stack_a(a, argc, argv))
 		ft_exit(a, b, 1);
 	if (!make_stack_b(b, a->len))
@@ -59,6 +61,6 @@ void	ft_exit(t_stk *stack_a, t_stk *stack_b, int flag)
 	if (stack_b)
 		free(stack_b);
 	if (flag == 1)
-		ft_printf("Error\n");
+		write(2, "Error\n", 6);
 	exit (1);
 }

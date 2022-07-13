@@ -6,7 +6,7 @@
 /*   By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 23:30:27 by sumsong           #+#    #+#             */
-/*   Updated: 2022/07/13 16:56:14 by sumsong          ###   ########.fr       */
+/*   Updated: 2022/07/13 17:03:13 by sumsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,12 @@ void	reverse_rotate_stack(t_stk *a, int a_len, t_stk *b, int b_len);
 void	swap_a_b(int *a, int *b);
 
 void	a_to_b(t_stk *a, t_stk *b, int cnt);
-void	a_to_b_dividing(t_stk *a, t_stk *b, int cnt, t_opr *opr);
 void	b_to_a(t_stk *a, t_stk *b, int cnt);
+
+int		a_is_sorted(t_stk *a, int cnt);
+void	a_to_b_dividing(t_stk *a, t_stk *b, int cnt, t_opr *opr);
 void	b_to_a_dividing(t_stk *a, t_stk *b, int cnt, t_opr *opr);
 void	pivoting(t_stk *stk, int set_len, t_pivot *pv);
-int		a_is_sorted(t_stk *a, int cnt);
 void	rrr_stack(t_stk *a, t_stk *b, t_opr opr);
 
 int		hard_sort_in_a(t_stk *a, int len, int cnt);
