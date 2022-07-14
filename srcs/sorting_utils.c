@@ -6,7 +6,7 @@
 /*   By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 17:00:34 by sumsong           #+#    #+#             */
-/*   Updated: 2022/07/13 18:48:09 by sumsong          ###   ########.fr       */
+/*   Updated: 2022/07/14 14:54:09 by sumsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	a_to_b_dividing(t_stk *a, t_stk *b, int cnt, t_opr *opr)
 			push_stack(a, b);
 			++(opr->pb);
 		}
-		else if (pv.l < a->stack[i++].n)
+		else if (pv.l < a->stack[i].n && ++i)
 		{
 			rotate_stack(*a, a->len);
 			++(opr->ra);
@@ -71,7 +71,7 @@ void	b_to_a_dividing(t_stk *a, t_stk *b, int cnt, t_opr *opr)
 			push_stack(b, a);
 			++(opr->pa);
 		}
-		else if (b->stack[i++].n < pv.s)
+		else if (b->stack[i].n < pv.s && ++i)
 		{
 			rotate_stack(*b, b->len);
 			++(opr->rb);

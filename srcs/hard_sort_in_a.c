@@ -6,7 +6,7 @@
 /*   By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 21:02:30 by sumsong           #+#    #+#             */
-/*   Updated: 2022/07/13 16:45:42 by sumsong          ###   ########.fr       */
+/*   Updated: 2022/07/14 14:46:42 by sumsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,22 @@ int	hard_sort_in_a(t_stk *a, int len, int cnt)
 	else if (cnt == 3)
 		sort_three_in_a(a, len);
 	return (1);
+}
+
+int	sort_two_in_a(t_stk *a, int len)
+{
+	int	first;
+	int	second;
+
+	first = a->stack[len - 1].n;
+	second = a->stack[len - 2].n;
+	if (first < second)
+		return (1);
+	else
+	{
+		swap_stack(a, a->len);
+		return (1);
+	}
 }
 
 int	sort_three_in_a(t_stk *a, int len)
@@ -41,20 +57,4 @@ int	sort_three_in_a(t_stk *a, int len)
 	else if (third < second && second < first)
 		a_sort_3_2_1(a);
 	return (1);
-}
-
-int	sort_two_in_a(t_stk *a, int len)
-{
-	int	first;
-	int	second;
-
-	first = a->stack[len - 1].n;
-	second = a->stack[len - 2].n;
-	if (first < second)
-		return (1);
-	else
-	{
-		swap_stack(a, a->len);
-		return (1);
-	}
 }
