@@ -6,7 +6,7 @@
 /*   By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 17:29:24 by sumsong           #+#    #+#             */
-/*   Updated: 2022/07/13 18:48:50 by sumsong          ###   ########.fr       */
+/*   Updated: 2022/07/13 19:01:27 by sumsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "libft/libft.h"
 # include "ft_printf/ft_printf.h"
+# include "bonus_srcs/gnl/get_next_line.h"
 
 typedef struct s_nb {
 	int	n;

@@ -6,7 +6,7 @@
 #    By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/25 23:33:09 by sumsong           #+#    #+#              #
-#    Updated: 2022/07/13 18:49:35 by sumsong          ###   ########.fr        #
+#    Updated: 2022/07/13 19:03:45 by sumsong          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME			=	push_swap
 BONUS			=	mychecker
 
 CC				=	cc
-CFLAGS			=	-Wall -Werror -Wextra
+CFLAGS			=	-g -Wall -Werror -Wextra
 AR				=	ar rcs
 RM				=	rm -f
 
@@ -34,6 +34,7 @@ SRC				=	main.c arg_check.c stack_init.c \
 
 BONUS_SRC		=	main.c arg_check.c stack_init.c \
 					operate_stack.c operator.c \
+					gnl/get_next_line.c gnl/get_next_line_utils.c \
 					testing.c
 
 SRCS			=	$(addprefix $(SRC_DIR), $(SRC))

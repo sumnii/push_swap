@@ -6,7 +6,7 @@
 /*   By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 17:04:50 by sumsong           #+#    #+#             */
-/*   Updated: 2022/07/13 18:54:42 by sumsong          ###   ########.fr       */
+/*   Updated: 2022/07/14 14:56:15 by sumsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,15 @@ int	main(int argc, char **argv)
 	if (argc < 2)
 		exit (0);
 	checker_init(&a, &b, argc, argv);
-	// print_stack(*a, *b);
 	while (1)
 	{
-		buf = (char *)ft_calloc(4, sizeof(char));
-		if (!read(0, buf, 4))
+		buf = get_next_line(0);
+		if (!buf)
 		{
-			// print_stack(*a, *b);
 			check_sort(a, b);
 			ft_exit(a, b, 0);
 		}
 		operate_stack(a, b, buf);
-		// print_stack(*a, *b);
 	}
 	ft_exit(a, b, 0);
 }
