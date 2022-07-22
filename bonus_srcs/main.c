@@ -6,7 +6,7 @@
 /*   By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 17:04:50 by sumsong           #+#    #+#             */
-/*   Updated: 2022/07/14 14:56:15 by sumsong          ###   ########.fr       */
+/*   Updated: 2022/07/22 17:52:46 by sumsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int	main(int argc, char **argv)
 {
-	t_stk	*a;
-	t_stk	*b;
-	char	*buf;
+	t_stk		*a;
+	t_stk		*b;
+	char		*buf;
 
 	if (argc < 2)
 		exit (0);
@@ -29,7 +29,12 @@ int	main(int argc, char **argv)
 			check_sort(a, b);
 			ft_exit(a, b, 0);
 		}
-		operate_stack(a, b, buf);
+		if (!operate_stack(a, b, buf))
+		{
+			free(buf);
+			ft_exit(a, b, 1);
+		}
+		free(buf);
 	}
 	ft_exit(a, b, 0);
 }

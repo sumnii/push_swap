@@ -6,7 +6,7 @@
 /*   By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 17:29:24 by sumsong           #+#    #+#             */
-/*   Updated: 2022/07/13 19:01:27 by sumsong          ###   ########.fr       */
+/*   Updated: 2022/07/22 17:51:38 by sumsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int		make_stack_b(t_stk *stack_b, int len);
 void	free_split(char **split);
 int		error_return(t_stk *a, char **split);
 
-void	operate_stack(t_stk *a, t_stk *b, char *buf);
+int		operate_stack(t_stk *a, t_stk *b, char *buf);
 
 void	swap_stack(t_stk *a, int a_len, t_stk *b, int b_len);
 void	push_stack(t_stk *stack_f, t_stk *stack_t);

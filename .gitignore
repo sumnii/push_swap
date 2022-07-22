@@ -1,4 +1,5 @@
 push_swap
+checker
 *.o
 *.a
 */README.md
