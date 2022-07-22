@@ -6,7 +6,7 @@
 #    By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/12 10:49:15 by sumsong           #+#    #+#              #
-#    Updated: 2022/01/25 01:09:53 by sumsong          ###   ########.fr        #
+#    Updated: 2022/07/22 18:10:00 by sumsong          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,9 @@ re: fclean all
 
 bonus: $(NAME) $(BONUS_OBJS) $(HEADER)
 	$(AR) $(ARFLAGS) $(NAME) $(BONUS_OBJS)
+
+.c.o:
+	$(CC) $(CFLAGS) -o $@ -c $?
 
 $(NAME): $(OBJS) $(HEADER)
 	$(AR) $(ARFLAGS) $@ $(OBJS)
