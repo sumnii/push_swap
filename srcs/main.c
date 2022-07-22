@@ -52,11 +52,11 @@ t_stk	*struct_init(void)
 
 void	ft_exit(t_stk *stack_a, t_stk *stack_b, int flag)
 {
-	if (stack_a->stack)
+	if (stack_a && stack_a->stack)
 		free(stack_a->stack);
 	if (stack_a)
 		free(stack_a);
-	if (stack_b->stack)
+	if (stack_a && stack_b->stack)
 		free(stack_b->stack);
 	if (stack_b)
 		free(stack_b);
