@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 NAME			=	push_swap
-BONUS			=	mychecker
+BONUS			=	checker
 
 CC				=	cc
 CFLAGS			=	-g -Wall -Werror -Wextra
@@ -31,11 +31,13 @@ SRC				=	main.c arg_check.c stack_init.c \
 					hard_sort_in_a.c hard_sort_in_b.c \
 					a3_hard_sort.c b3_hard_sort.c \
 					testing.c
+# testing.c should be deleted.
 
 BONUS_SRC		=	main.c arg_check.c stack_init.c \
 					operate_stack.c operator.c \
 					gnl/get_next_line.c gnl/get_next_line_utils.c \
 					testing.c
+# testing.c should be deleted.
 
 SRCS			=	$(addprefix $(SRC_DIR), $(SRC))
 OBJS			=	$(SRCS:.c=.o)
