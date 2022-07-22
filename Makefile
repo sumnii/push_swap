@@ -64,11 +64,11 @@ bonus: $(BONUS)
 $(NAME): $(OBJS)
 	make -C $(PRINTF_DIR)
 	make -C $(LIBFT_DIR)
-	$(CC) -o $@ $(LIBFT_FLAGS) $(PRINTF_FLAGS) $(OBJS)
+	$(CC) $(CFLAGS) -o $@ $(LIBFT_FLAGS) $(PRINTF_FLAGS) $(OBJS)
 
 $(BONUS): $(BONUS_OBJS)
 	make -C $(PRINTF_DIR)
 	make -C $(LIBFT_DIR)
-	$(CC) -o $@ $(LIBFT_FLAGS) $(PRINTF_FLAGS) $(BONUS_OBJS)
+	$(CC) $(CFLAGS) -o $@ $(LIBFT_FLAGS) $(PRINTF_FLAGS) $(BONUS_OBJS)
 
-PHONY: all clean fclean re bonus./
+PHONY: all clean fclean re bonus

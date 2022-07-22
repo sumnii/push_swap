@@ -6,7 +6,7 @@
 /*   By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 16:59:53 by sumsong           #+#    #+#             */
-/*   Updated: 2022/07/13 19:05:29 by sumsong          ###   ########.fr       */
+/*   Updated: 2022/07/22 16:55:15 by sumsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,27 @@ size_t	gnl_strlen(char *str)
 	return (len);
 }
 
-int	ft_find_lf(char *str)
+void	*gnl_calloc(size_t size, size_t count)
+{
+	void			*ary;
+	unsigned char	*ptr;
+	size_t			n;
+
+	n = size * count;
+	ary = malloc(n);
+	if (!ary)
+		return (NULL);
+	ptr = ary;
+	while (n > 0)
+	{
+		*ptr = 0;
+		ptr++;
+		--n;
+	}
+	return (ary);
+}
+
+int	gnl_find_lf(char *str)
 {
 	size_t	i;
 
@@ -47,7 +67,7 @@ char	*gnl_strjoin(char **line, char **buf)
 		return (NULL);
 	len = gnl_strlen(*line);
 	len += gnl_strlen(*buf);
-	merged = (char *)ft_calloc(sizeof(char), len + 1);
+	merged = (char *)gnl_calloc(sizeof(char), len + 1);
 	if (!merged)
 		return (NULL);
 	i = 0;
@@ -59,11 +79,11 @@ char	*gnl_strjoin(char **line, char **buf)
 	j = 0;
 	while (*buf && (*buf)[j])
 		merged[i++] = (*buf)[j++];
-	ft_close(line, buf);
+	gnl_close(line, buf);
 	return (merged);
 }
 
-char	*ft_idx_dup(char *str, size_t i, size_t j)
+char	*gnl_idx_dup(char *str, size_t i, size_t j)
 {
 	size_t	len;
 	char	*dup;
@@ -72,7 +92,7 @@ char	*ft_idx_dup(char *str, size_t i, size_t j)
 	len = j - i + 1;
 	if (len == 0)
 		return (NULL);
-	dup = (char *)ft_calloc(sizeof(char), len + 1);
+	dup = (char *)gnl_calloc(sizeof(char), len + 1);
 	if (!dup)
 		return (NULL);
 	idx = 0;
