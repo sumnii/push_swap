@@ -6,7 +6,7 @@
 /*   By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 00:00:41 by sumsong           #+#    #+#             */
-/*   Updated: 2022/07/13 18:34:02 by sumsong          ###   ########.fr       */
+/*   Updated: 2022/07/22 17:59:17 by sumsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ int	int_range_check(char *str)
 	if ((ft_strlen(str) == 10 && str[0] != '-'
 			&& ft_strncmp("2147483647", str, 10) < 0)
 		|| (ft_strlen(str) == 11 && str[0] == '-'
-			&& ft_strncmp("-2147483648", str, 11) < 0))
+			&& ft_strncmp("-2147483648", str, 11) < 0)
+		|| (ft_strlen(str) > 11))
 		return (0);
 	else
 		return (1);
