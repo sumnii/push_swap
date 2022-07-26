@@ -6,7 +6,7 @@
 /*   By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 17:05:52 by sumsong           #+#    #+#             */
-/*   Updated: 2022/07/26 17:50:11 by sumsong          ###   ########.fr       */
+/*   Updated: 2022/07/26 21:30:02 by sumsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ t_stk	*struct_init(void)
 {
 	t_stk	*stk;
 
-	stk = (t_stk *)malloc(sizeof(t_stk));
+	stk = (t_stk *)ft_calloc(1, sizeof(t_stk));
 	if (!stk)
 		return (NULL);
 	return (stk);
@@ -50,7 +50,7 @@ void	stack_init(t_stk **a, t_stk **b, int argc, char **argv)
 		ft_exit(*a, *b, 1);
 	if (!make_stack_a(*a, argc, argv))
 		ft_exit(*a, *b, 1);
-	if (!sort_check((*a)->stack, (*a)->len))
+	if (!sorted_arg_check((*a)->stack, (*a)->len))
 		ft_exit(*a, *b, 0);
 	if (!make_stack_b(*b, (*a)->len))
 		ft_exit(*a, *b, 1);

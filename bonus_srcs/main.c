@@ -6,7 +6,7 @@
 /*   By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 17:04:50 by sumsong           #+#    #+#             */
-/*   Updated: 2022/07/22 17:52:46 by sumsong          ###   ########.fr       */
+/*   Updated: 2022/07/26 21:31:31 by sumsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ t_stk	*struct_init(void)
 {
 	t_stk	*stk;
 
-	stk = (t_stk *)malloc(sizeof(t_stk));
+	stk = (t_stk *)ft_calloc(1, sizeof(t_stk));
 	if (!stk)
 		return (NULL);
 	return (stk);

@@ -6,7 +6,7 @@
 #    By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/25 23:33:09 by sumsong           #+#    #+#              #
-#    Updated: 2022/07/26 17:44:29 by sumsong          ###   ########.fr        #
+#    Updated: 2022/07/26 20:19:52 by sumsong          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME			=	push_swap
 BONUS			=	checker
 
 CC				=	cc
-CFLAGS			=	-Wall -Werror -Wextra
+CFLAGS			=	-Wall -Werror -Wextra -g -fsanitize=address
 AR				=	ar rcs
 RM				=	rm -f
 

@@ -6,7 +6,7 @@
 /*   By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 00:00:41 by sumsong           #+#    #+#             */
-/*   Updated: 2022/07/22 17:59:17 by sumsong          ###   ########.fr       */
+/*   Updated: 2022/07/26 21:32:07 by sumsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ int	arg_check(char **split, int i, int j, t_stk a)
 	else if (!dup_check(a.stack, a.len, j))
 		return (0);
 	else if (!atoi_error_check(split[i], a.stack[j]))
-		return (0);
-	else if (!sort_check(a.stack, j, a.len))
 		return (0);
 	else
 		return (1);
@@ -57,18 +55,4 @@ int	dup_check(t_nb *stack, int s_len, int idx)
 		--i;
 	}
 	return (1);
-}
-
-int	sort_check(t_nb *stack, int j, int len)
-{
-	static int	flag = 0;
-
-	if (j == len - 1)
-		return (1);
-	if (stack[j].n < stack[j + 1].n)
-		flag = 1;
-	if (j == 0)
-		return (flag);
-	else
-		return (1);
 }

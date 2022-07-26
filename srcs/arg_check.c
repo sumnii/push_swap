@@ -6,7 +6,7 @@
 /*   By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 00:00:41 by sumsong           #+#    #+#             */
-/*   Updated: 2022/07/26 17:41:23 by sumsong          ###   ########.fr       */
+/*   Updated: 2022/07/26 21:28:57 by sumsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	dup_check(t_nb *stack, int s_len, int idx)
 	return (1);
 }
 
-int	sort_check(t_nb *stack, int len)
+int	sorted_arg_check(t_nb *stack, int len)
 {
 	int	i;
 

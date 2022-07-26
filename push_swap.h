@@ -6,7 +6,7 @@
 /*   By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 23:30:27 by sumsong           #+#    #+#             */
-/*   Updated: 2022/07/26 17:37:15 by sumsong          ###   ########.fr       */
+/*   Updated: 2022/07/26 21:29:43 by sumsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int		arg_check(char **split, int i, int j, t_stk a);
 int		int_range_check(char *str);
 int		atoi_error_check(char *str, t_nb nb);
 int		dup_check(t_nb *stack, int s_len, int idx);
-int		sort_check(t_nb *stack, int len);
+int		sorted_arg_check(t_nb *stack, int len);
 
 int		count_args(int argc, char **argv);
 int		make_stack_a(t_stk *stack_a, int argc, char **argv);
