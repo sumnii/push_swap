@@ -6,7 +6,7 @@
 /*   By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 23:30:27 by sumsong           #+#    #+#             */
-/*   Updated: 2022/07/13 18:42:20 by sumsong          ###   ########.fr       */
+/*   Updated: 2022/07/26 17:37:15 by sumsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,14 @@ typedef struct s_opr {
 }				t_opr;
 
 t_stk	*struct_init(void);
+void	stack_init(t_stk **a, t_stk **b, int argc, char **argv);
 void	ft_exit(t_stk *stack_a, t_stk *stack_b, int flag);
 
 int		arg_check(char **split, int i, int j, t_stk a);
 int		int_range_check(char *str);
 int		atoi_error_check(char *str, t_nb nb);
 int		dup_check(t_nb *stack, int s_len, int idx);
-int		sort_check(t_nb *stack, int j, int len);
+int		sort_check(t_nb *stack, int len);
 
 int		count_args(int argc, char **argv);
 int		make_stack_a(t_stk *stack_a, int argc, char **argv);
