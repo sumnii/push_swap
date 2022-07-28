@@ -6,7 +6,7 @@
 /*   By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 17:05:52 by sumsong           #+#    #+#             */
-/*   Updated: 2022/07/26 21:30:02 by sumsong          ###   ########.fr       */
+/*   Updated: 2022/07/28 18:32:57 by sumsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	main(int argc, char **argv)
 	t_stk	*b;
 
 	if (argc < 2)
-		return (ft_printf("Error\n"));
+		exit (0);
 	a = struct_init();
 	b = struct_init();
 	if (!a || !b)
