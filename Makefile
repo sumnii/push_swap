@@ -6,7 +6,7 @@
 #    By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/25 23:33:09 by sumsong           #+#    #+#              #
-#    Updated: 2022/07/26 20:19:52 by sumsong          ###   ########.fr        #
+#    Updated: 2022/08/02 18:28:34 by sumsong          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME			=	push_swap
 BONUS			=	checker
 
 CC				=	cc
-CFLAGS			=	-Wall -Werror -Wextra -g -fsanitize=address
+CFLAGS			=	-Wall -Werror -Wextra
 AR				=	ar rcs
 RM				=	rm -f
 
@@ -56,7 +56,7 @@ fclean: clean
 	make -C $(LIBFT_DIR) fclean
 	$(RM) $(NAME) $(BONUS)
 
-re: clean all
+re: fclean all
 
 bonus: $(BONUS)
 
